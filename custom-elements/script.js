@@ -1,4 +1,4 @@
-var XMeepProto = Object.create(HTMLElement.prototype{
+var XMeepProto = Object.create(HTMLElement.prototype, {
   createdCallback: {
     value: function() {
       var t = document.querySelector("#meep-style");
