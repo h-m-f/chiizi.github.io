@@ -62,7 +62,20 @@ var cornerstone = (function() {
         }
         return re;
       })(), canvas.width / 2, canvas.height / 3 + 30);
+      if (Math.round(iteration / 60) % 2) {
+        ctx.font = "Bold 30px Courier New";
+        ctx.textAlign = "center";
+        ctx.fillText("CTRL TO START SESSION", canvas.width / 2, canvas.height / 2 - 15)
+      }
     })();
+  };
+  
+  var sessionRender = function() {
+    if (Math.round(iteration / 60) % 2) {
+      ctx.font = "Bold 30px Courier New";
+      ctx.textAlign = "center";
+      ctx.fillText("SESSION IN PROGRESS", canvas.width / 2, canvas.height / 2 - 15)
+    }
   };
   
   var render = function() {
@@ -71,6 +84,8 @@ var cornerstone = (function() {
     }
     if (!sessionOpen) {
       titleRender();
+    } else {
+      sessionRender();
     }
   };
   
@@ -89,7 +104,9 @@ var cornerstone = (function() {
     if (sessionOpen) {
       
     } else {
-      
+      if (17 in keysDown) {
+        sessionOpen = true;
+      }
     }
   };
   
