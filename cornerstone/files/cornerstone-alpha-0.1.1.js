@@ -1,4 +1,4 @@
-//I CHANGED MY MIND - NOT FINALIZED ANYMORE
+//FINALIZED
 var cornerstone = (function() {
   var canvas = document.getElementById("frame");
   var ctx = canvas.getContext("2d");
