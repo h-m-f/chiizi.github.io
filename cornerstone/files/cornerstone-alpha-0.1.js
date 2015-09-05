@@ -1,3 +1,4 @@
+//FINALIZED - NO MORE EDITS TO THIS FILE
 var cornerstone = (function() {
   var canvas = document.getElementById("frame");
   var ctx = canvas.getContext("2d");
