@@ -9,8 +9,7 @@
   font-family: "Ubuntu Light", sans-serif;
   font-weight: 400;
   margin: 0;
-  padding: 20px;
-  color: #fff;
+  color: #FFF;
 }
 *:not(head) + * {
   margin-top: 15px;
