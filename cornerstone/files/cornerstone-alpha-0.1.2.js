@@ -1,6 +1,25 @@
 var cornerstone = (function() {
   const SIMPLE = Symbol();
   
+  var Color = function(r, g, b) {
+    this.r = r;
+    this.g = g;
+    this.b = b;
+    this.getHex = function() {
+      return "#" + (this.r & 0xFF).toString(16) + (this.g & 0xFF).toString(16) + (this.b & 0xFF).toString(16);
+    };
+    this.setHex = function(hex) {
+      hex = hex.replace("#", "");
+      this.r = parseInt(hex, 16) & 0xFF0000 >> 16;
+      this.g = parseInt(hex, 16) & 0x00FF00 >> 8;
+      this.b = parseInt(hex, 16) & 0x0000FF;
+    };
+    return this;
+  };
+  var Invert = function() {
+    return this;
+  }
+  
   var canvas = document.getElementById("frame");
   canvas.x = 0;
   canvas.y = 0;
@@ -33,7 +52,8 @@ var cornerstone = (function() {
     speed: 64,
     render: {
       type: SIMPLE,
-      fn: ctx.invertRect
+      skin: new Color(0xFF, 0xFF, 0xFF),
+      fn: ctx.fillRect
     }
   };
   
@@ -105,6 +125,9 @@ var cornerstone = (function() {
     }
     for (var ii = 0; ii < renderStack.length; ii++) {
       if (renderStack[ii].render.type == SIMPLE) {
+        if (renderStack[ii].render.skin.constructor = Color) {
+          ctx.fillStyle = renderStack[ii].render.skin.getHex();
+        }
         renderStack[ii].render.fn(renderStack[ii].x, renderStack[ii].y, renderStack[ii].width, renderStack[ii].height);
       }
     }
