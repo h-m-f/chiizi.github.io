@@ -65,7 +65,7 @@ var cornerstone = (function() {
       if (Math.round(iteration / 60) % 2) {
         ctx.font = "Bold 30px Courier New";
         ctx.textAlign = "center";
-        ctx.fillText("ENTER TO START SESSION", canvas.width / 2, canvas.height / 2 - 7.5)
+        ctx.fillText("ENTER TO START SESSION", canvas.width / 2, canvas.height / 2)
       }
     })();
   };
@@ -74,7 +74,7 @@ var cornerstone = (function() {
     if (Math.round(iteration / 60) % 2) {
       ctx.font = "Bold 30px Courier New";
       ctx.textAlign = "center";
-      ctx.fillText("SESSION IN PROGRESS", canvas.width / 2, canvas.height / 2 - 7.5)
+      ctx.fillText("SESSION IN PROGRESS", canvas.width / 2, canvas.height / 2)
     }
   };
   
