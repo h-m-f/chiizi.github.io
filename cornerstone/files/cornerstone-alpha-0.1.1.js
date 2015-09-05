@@ -108,6 +108,9 @@ var cornerstone = (function() {
         sessionOpen = true;
       }
     }
+    if (keysDown.indexOf(true) != -1) {
+      console.log(keysDown);
+    }
   };
   
   var main;
