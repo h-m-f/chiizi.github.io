@@ -12,7 +12,7 @@
   padding: 20px;
   color: #fff;
 }
-* + * {
+*:not(head) + * {
   margin-top: 15px;
 }
 
