@@ -90,10 +90,10 @@ var cornerstone = (function() {
   };
   
   var keysDown = [];
-  window.keydown = function(e) {
+  window.onkeydown = function(e) {
     keysDown[e.keyCode] = true;
   };
-  window.keyup = function(e){
+  window.onkeyup = function(e){
     keysDown[e.keyCode] = false;
   };
   var keyIsDown = function(code) {
