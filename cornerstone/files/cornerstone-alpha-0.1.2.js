@@ -1,6 +1,20 @@
 var cornerstone = (function() {
+  const SIMPLE = Symbol();
+  
   var canvas = document.getElementById("frame");
+  canvas.x = 0;
+  canvas.y = 0;
   var ctx = canvas.getContext("2d");
+  
+  ctx.invertRect = function(x, y, width, height) {
+    var data = ctx.getImageData(x, y, width, height);
+    for (var i = 0; i < data.data.length; i += 4) {
+      data.data[i] = 255 - data.data[i]; // R
+      data.data[i + 1] = 255 - data.data[i + 1]; // G
+      data.data[i + 2] = 255 - data.data[i + 2]; // B
+    }
+    ctx.putImageData(data, x, y);
+  }
   
   canvas.width = 512;
   canvas.height = 480;
@@ -10,6 +24,18 @@ var cornerstone = (function() {
   var sessionOpen = false;
   var noClear = false;
   var paused = false;
+  
+  var player = {
+    x: 0,
+    y: 0,
+    width: 32,
+    height: 32,
+    speed: 64,
+    render: {
+      type: SIMPLE,
+      fn: ctx.invertRect
+    }
+  };
   
   var titleRender = function() {
     (function() {
@@ -69,11 +95,18 @@ var cornerstone = (function() {
     })();
   };
   
+  var renderStack = [player];
+  
   var sessionRender = function() {
     if (Math.round(iteration / 60) % 2) {
       ctx.font = "Bold 30px Courier New";
       ctx.textAlign = "center";
       ctx.fillText("SESSION IN PROGRESS", canvas.width / 2, canvas.height / 2)
+    }
+    for (var ii = 0; ii < renderStack.length; ii++) {
+      if (renderStack[ii].render.type == SIMPLE) {
+        renderStack[ii].render.fn(renderStack[ii].x, renderStack[ii].y, renderStack[ii].width, renderStack[ii].height);
+      }
     }
   };
   
@@ -99,16 +132,33 @@ var cornerstone = (function() {
     return !!keysDown[code];
   };
   
+  var constrain = function(objA, objB) {
+    objB.x = objA.x > objB.x ? objA.x : objB.x;
+    objB.x = objA.x + objA.width < objB.x + objB.width ? objA.x + objA.width < objB.x : objB.x + objB.width;
+    objB.y = objA.y > objB.y ? objA.y : objB.y;
+    objB.y = objA.y + objA.height < objB.y + objB.height ? objA.y + objA.height < objB.y : objB.y + objB.height;
+    return objB;
+  }
+  
   var update = function() {
     if (sessionOpen) {
-      
+      if (keyIsDown(37) ||  keyIsDown(65)) { // left, a
+        player.x -= player.speed / 60;
+      }
+      if (keyIsDown(38) ||  keyIsDown(87)) { // up, w
+        player.y -= player.speed / 60;
+      }
+      if (keyIsDown(39) ||  keyIsDown(68)) { // right, d
+        player.x += player.speed / 60;
+      }
+      if (keyIsDown(40) ||  keyIsDown(83)) { // down, s
+        player.y += player.speed / 60;
+      }
+      player = constrain(canvas, player);
     } else {
       if (keyIsDown(13)) {
         sessionOpen = true;
       }
-    }
-    if (keysDown.indexOf(true) != -1) {
-      console.log(keysDown);
     }
   };
   
