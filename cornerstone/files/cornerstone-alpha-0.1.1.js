@@ -65,7 +65,7 @@ var cornerstone = (function() {
       if (Math.round(iteration / 60) % 2) {
         ctx.font = "Bold 30px Courier New";
         ctx.textAlign = "center";
-        ctx.fillText("CTRL TO START SESSION", canvas.width / 2, canvas.height / 2 - 15)
+        ctx.fillText("ENTER TO START SESSION", canvas.width / 2, canvas.height / 2 - 15)
       }
     })();
   };
@@ -104,7 +104,7 @@ var cornerstone = (function() {
     if (sessionOpen) {
       
     } else {
-      if (keyIsDown(17)) {
+      if (keyIsDown(13)) {
         sessionOpen = true;
       }
     }
