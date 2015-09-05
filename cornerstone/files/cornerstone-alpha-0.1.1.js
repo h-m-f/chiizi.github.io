@@ -1,4 +1,4 @@
-//FINALIZED - NO MORE EDITS TO THIS FILE
+//I CHANGED MY MIND - NOT FINALIZED ANYMORE
 var cornerstone = (function() {
   var canvas = document.getElementById("frame");
   var ctx = canvas.getContext("2d");
@@ -97,14 +97,14 @@ var cornerstone = (function() {
     keysDown[e.keyCode] = false;
   };
   var keyIsDown = function(code) {
-    return !!keysDown(code);
+    return !!keysDown[code];
   };
   
   var update = function() {
     if (sessionOpen) {
       
     } else {
-      if (17 in keysDown) {
+      if (keyIsDown(17)) {
         sessionOpen = true;
       }
     }
