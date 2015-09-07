@@ -114,11 +114,6 @@ var cornerstone = (function() {
     for (var ii = 0; ii < renderStack.length; ii++) {
       renderStack[ii].render();
     }
-    
-    ctx.fillStyle = "rgba(128, 128, 128, 128)";
-    ctx.font = "Bold 20px Courier New";
-    ctx.textAlign = "left";
-    ctx.fillText("cornerstone ver. alpha-0.1.2");
   };
   
   var render = function() {
@@ -130,6 +125,11 @@ var cornerstone = (function() {
     } else {
       sessionRender();
     }
+    
+    ctx.fillStyle = "rgba(128, 128, 128, 128)";
+    ctx.font = "Bold 20px Courier New";
+    ctx.textAlign = "left";
+    ctx.fillText("cornerstone ver. alpha-0.1.2");
   };
   
   var keysDown = [];
