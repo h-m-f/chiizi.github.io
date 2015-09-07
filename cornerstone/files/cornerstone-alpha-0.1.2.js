@@ -129,7 +129,7 @@ var cornerstone = (function() {
     ctx.fillStyle = "rgba(128, 128, 128, 128)";
     ctx.font = "Bold 20px Courier New";
     ctx.textAlign = "left";
-    ctx.fillText("cornerstone ver. alpha-0.1.2");
+    ctx.fillText("cornerstone ver. alpha-0.1.2", 16, 16);
   };
   
   var keysDown = [];
@@ -142,14 +142,6 @@ var cornerstone = (function() {
   var keyIsDown = function(code) {
     return !!keysDown[code];
   };
-  
-  var constrain = function(objA, objB) {
-    objB.x = objA.x > objB.x ? objA.x : objB.x;
-    objB.x = objA.x + objA.width < objB.x + objB.width ? objA.x + objA.width < objB.x : objB.x + objB.width;
-    objB.y = objA.y > objB.y ? objA.y : objB.y;
-    objB.y = objA.y + objA.height < objB.y + objB.height ? objA.y + objA.height < objB.y : objB.y + objB.height;
-    return objB;
-  }
   
   var update = function() {
     if (sessionOpen) {
