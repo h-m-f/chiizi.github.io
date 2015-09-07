@@ -25,6 +25,13 @@ var cornerstone = (function() {
     ctx.putImageData(data, x, y);
   }
   
+  var tempColorChange = function(fn, color) {
+    var old = ctx.fillStyle;
+    ctx.fillStyle = color;
+    fn();
+    ctx.fillStyle = old;
+  }
+  
   canvas.width = 512;
   canvas.height = 480;
   
@@ -46,61 +53,60 @@ var cornerstone = (function() {
   };
   
   var titleRender = function() {
-    (function() {
-      var oteration = iteration;
-      while (oteration >= 30) {
-        oteration -= 30;
+    var oteration = iteration;
+    while (oteration >= 30) {
+      oteration -= 30;
+    }
+    oteration = 30 - oteration;
+    for (var count = -1; count < 15; count++) {
+      ctx.fillRect((canvas.width - 32) / 16 * (oteration / 15 + 2 * count), canvas.height - 32, 32, 32);
+    }
+    oteration -= 7.5;
+    while (oteration >= 30) {
+      oteration -= 30;
+    }
+    while (oteration < 0) {
+      oteration += 30;
+    }
+    ctx.fillRect(16, canvas.height - 96 + Math.abs(oteration - 15) / 15 * 32, 32, 32);
+    
+    ctx.font = "Bold 30px Courier New";
+    ctx.textAlign = "center";
+    
+    var text = "CORNERSTONE";
+    var point = Math.round(Math.random() * 11);
+    text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
+    point = Math.round(Math.random() * 11);
+    text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
+    point = Math.round(Math.random() * 11);
+    text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
+    point = Math.round(Math.random() * 11);
+    text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
+    ctx.fillText((function() {
+      var re = "";
+      var a = 0;
+      while (a < 11) {
+        re += String.fromCharCode(Math.round(Math.random() * 32) + 32);
+        a++;
       }
-      oteration = 30 - oteration;
-      for (var count = -1; count < 15; count++) {
-        ctx.fillRect((canvas.width - 32) / 16 * (oteration / 15 + 2 * count), canvas.height - 32, 32, 32);
+      return re;
+    })(), canvas.width / 2, canvas.height / 3 - 30);
+    ctx.fillText(text, canvas.width / 2, canvas.height / 3);
+    ctx.fillText((function() {
+      var re = "";
+      var a = 0;
+      while (a < 11) {
+        re += String.fromCharCode(Math.round(Math.random() * 32) + 32);
+        a++;
       }
-      oteration -= 7.5;
-      while (oteration >= 30) {
-        oteration -= 30;
-      }
-      while (oteration < 0) {
-        oteration += 30;
-      }
-      ctx.fillRect(16, canvas.height - 96 + Math.abs(oteration - 15) / 15 * 32, 32, 32);
-      
+      return re;
+    })(), canvas.width / 2, canvas.height / 3 + 30);
+    if (Math.round(iteration / 60) % 2) {
       ctx.font = "Bold 30px Courier New";
       ctx.textAlign = "center";
-      
-      var text = "CORNERSTONE";
-      var point = Math.round(Math.random() * 11);
-      text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
-      point = Math.round(Math.random() * 11);
-      text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
-      point = Math.round(Math.random() * 11);
-      text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
-      point = Math.round(Math.random() * 11);
-      text = text.substring(0, point) + String.fromCharCode(Math.round(Math.random() * 32) + 32) + text.substring(point + 1, 12);
-      ctx.fillText((function() {
-        var re = "";
-        var a = 0;
-        while (a < 11) {
-          re += String.fromCharCode(Math.round(Math.random() * 32) + 32);
-          a++;
-        }
-        return re;
-      })(), canvas.width / 2, canvas.height / 3 - 30);
-      ctx.fillText(text, canvas.width / 2, canvas.height / 3);
-      ctx.fillText((function() {
-        var re = "";
-        var a = 0;
-        while (a < 11) {
-          re += String.fromCharCode(Math.round(Math.random() * 32) + 32);
-          a++;
-        }
-        return re;
-      })(), canvas.width / 2, canvas.height / 3 + 30);
-      if (Math.round(iteration / 60) % 2) {
-        ctx.font = "Bold 30px Courier New";
-        ctx.textAlign = "center";
-        ctx.fillText("ENTER TO START SESSION", canvas.width / 2, canvas.height / 2)
-      }
-    })();
+      ctx.fillText("ENTER TO START SESSION", canvas.width / 2, canvas.height / 2)
+    }
+  };
   };
   
   var renderStack = [player];
@@ -126,10 +132,13 @@ var cornerstone = (function() {
       sessionRender();
     }
     
-    ctx.fillStyle = "rgba(128, 128, 128, 128)";
+    ctx.fillStyle = ;
     ctx.font = "Bold 20px Courier New";
     ctx.textAlign = "left";
-    ctx.fillText("cornerstone ver. alpha-0.1.2", 16, 16);
+    
+    temppColorChange(function() {
+      ctx.fillText("cornerstone ver. alpha-0.1.2", 16, 16);
+    }, "rgba(128, 128, 128, 128)");
   };
   
   var keysDown = [];
