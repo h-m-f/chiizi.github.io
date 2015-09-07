@@ -174,8 +174,6 @@ var cornerstone = (function() {
     
     render();
     
-    console.log(player.x.toString() + ", " + player.y.toString());
-    
     iteration++;
     requestAnimationFrame(main);
   })();
