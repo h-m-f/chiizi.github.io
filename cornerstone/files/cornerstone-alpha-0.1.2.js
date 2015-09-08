@@ -133,7 +133,7 @@ var cornerstone = (function() {
     ctx.font = "Bold 20px Courier New";
     ctx.textAlign = "left";
     
-    temppColorChange(function() {
+    tempColorChange(function() {
       ctx.fillText("cornerstone ver. alpha-0.1.2", 16, 16);
     }, "rgba(128, 128, 128, 128)");
   };
