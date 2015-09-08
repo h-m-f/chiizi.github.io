@@ -130,8 +130,6 @@ var cornerstone = (function() {
     } else {
       sessionRender();
     }
-    
-    ctx.fillStyle = ;
     ctx.font = "Bold 20px Courier New";
     ctx.textAlign = "left";
     
