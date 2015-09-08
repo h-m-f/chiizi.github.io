@@ -107,7 +107,6 @@ var cornerstone = (function() {
       ctx.fillText("ENTER TO START SESSION", canvas.width / 2, canvas.height / 2)
     }
   };
-  };
   
   var renderStack = [player];
   
