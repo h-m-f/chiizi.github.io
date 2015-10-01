@@ -1,6 +1,6 @@
 document.body.appendChild((function() {
   var script = document.createElement("script");
-  script.src = "http://cdn.peerjs.com/0.3/peer.min.js";
+  script.src = "peer.min.js";
   return script;
 })());
 peer.on("connection", function(conn) {
