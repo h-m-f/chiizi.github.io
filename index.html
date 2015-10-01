@@ -2,13 +2,47 @@
 <html>
   <head>
     <title>
-      stuff I make
+      hello.
     </title>
+    <style>
+      canvas {
+        background: #777;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
   </head>
   <body>
-    <h1>
-      stuff I make
-    </h1>
-    <a href="cornerstone">Cornerstone</a>
+    <canvas id="cheese"></canvas>
+    <script>
+      function noise(ctx) {
+
+    var w = ctx.canvas.width,
+        h = ctx.canvas.height,
+        idata = ctx.createImageData(w, h),               // create image data
+        buffer32 = new Uint32Array(idata.data.buffer),   // get 32-bit buffer
+        len = buffer32.length,
+        i = 0;
+
+for(; i < len; i++)
+    if (Math.random() < 0.5) buffer32[i] = 0xff000000;
+
+    ctx.putImageData(idata, 0, 0);
+}
+var canvas = document.getElementById("cheese");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var ctx = canvas.getContext("2d");
+
+(function loop() {
+    noise(ctx);
+    requestAnimationFrame(loop);
+})();
+
+    </script>
   </body>
 </html>
+<!-- holy crap this was shittily hacked together. -->
+<!-- by hans. -->
