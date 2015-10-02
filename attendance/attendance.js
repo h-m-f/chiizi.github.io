@@ -19,8 +19,15 @@ var attendance = (function() {
   if (document.cookie.search("student") == -1) {
     setCookie("student", "[]", "Mon, 6 June 2016 12:00:00 UTC");
   }
-  JSON.parse(getCookie("students")).map(function() {
+  JSON.parse(getCookie("students")).map(function(ee) {
     var tr = document.createElement("tr");
+    var tdSelect = document.createElement("td");
+    var tdName = document.createElement("td");
+    tdSelect.innerHTML = "<select><option>Present</option><option>Excused</option><option>Tardy</option><option>Truant</option></select>";
+    tdName.innerHTML = ee;
+    tr.appendChild(tdSelect);
+    tr.appendChild(tdName);
+    document.getElementById("students").appendChild(tr);
   });
   return {
     add: function(names) {
