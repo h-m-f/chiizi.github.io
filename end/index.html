@@ -19,7 +19,9 @@
     </style>
   </head>
   <body>
-    <div id="countdown"></div>
+    <div id="countdown">
+      <span class="days"></span>d<span class="hours"></span>h<span class=".minutes"></span>m<span class="seconds"></span>s
+    </div>
     <script>
       function getTimeRemaining(endtime){
   var t = Date.parse(endtime) - Date.parse(new Date());
