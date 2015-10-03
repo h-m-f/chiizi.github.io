@@ -5,23 +5,35 @@
       End
     </title>
     <style>
+      * {
+        color: #FFF;
+        font-family: sans-serif;
+      }
       body {
         background: #000;
       }
-      #countdown {
-        font-family: sans-serif;
-        font-size: 25vh;
-        color: #FFF;
+      .centered {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
+      .big {
+        font-size: 25vh;
+      }
+      .med {
+        font-size: 10vh;
+      }
     </style>
   </head>
   <body>
-    <div id="countdown">
-      <span class="days"></span>d<span class="hours"></span>h<span class="minutes"></span>m<span class="seconds"></span>s
+    <div class="centered">
+      <div class="big">
+        <span class="days"></span>d<span class="hours"></span>h<span class="minutes"></span>m<span class="seconds"></span>s
+      </div>
+      <div class="med">
+        until polyform beta is released.
+      </div>
     </div>
     <script>
       function getTimeRemaining(endtime){
