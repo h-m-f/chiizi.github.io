@@ -43,15 +43,11 @@
       var addPost = function(name, content) {
         var post = document.createElement("div");
         post.className = "post gray";
-        post.appendChild(document.createTextNode(content.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-          return "&#" + i.charCodeAt(0) + ";";
-        })));
+        post.appendChild(document.createTextNode(content));
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
         author.className = "author";
-        author.appendChild(document.createTextNode(("by " + name + " @ " + new Date(Date.now()).toString()).replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
-          return "&#" + i.charCodeAt(0) + ";";
-        })));
+        author.appendChild(document.createTextNode(("by " + name + " @ " + new Date(Date.now()).toString())));
         post.appendChild(author);
         document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
       };
@@ -59,3 +55,8 @@
     </script>
   </body>
 </html>
+<!--
+        .replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+          return "&#" + i.charCodeAt(0) + ";";
+        })
+-->
