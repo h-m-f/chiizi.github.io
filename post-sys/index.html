@@ -96,9 +96,9 @@
         document.querySelector(".settings .name .in").innerHTML = "";
       };
       var name = (function() {
-        var name = "anon";
+        var nameInternal = "anon";
         return function(newName) {
-          return (name = newName || name);
+          return (nameInternal = newName || nameInternal);
         };
       })();
     </script>
