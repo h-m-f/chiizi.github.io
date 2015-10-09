@@ -98,7 +98,8 @@
         author.className  = "author";
         author.innerHTML = "by " + posterName + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
-        document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
+        if (content)
+          document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
