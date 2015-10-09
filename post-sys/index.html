@@ -48,7 +48,7 @@
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
         author.className = "author";
-        author.innerHTML = document.createTextNode("by " + name + " @ " + new Date(Date.now()).toString());
+        author.innerHTML = "by " + name + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
       };
