@@ -27,6 +27,9 @@
         background: rgba(0, 0, 0, 0.1);
         border: 1px solid #333;
       }
+      .em {
+        border-width: 3px;
+      }
       .author {
         color: #444;
       }
@@ -52,10 +55,16 @@
         </ul>
       </div>
     </div>
+    <div class="settings gray">
+      <div class="name gray">
+        <div class="in gray" contenteditable="plaintext-only"></div>
+        <button class="em gray">change name</button>
+      </div>
+    </div>
     <script>
       document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
-          addPost(name, this.innerHTML);
+          addPost(name(), this.innerHTML);
           this.innerHTML = "";
           return false;
         } else {
@@ -69,11 +78,29 @@
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
         author.className = "author";
-        author.innerHTML = "by " + name + " @ " + new Date(Date.now()).toString();
+        author.innerHTML = "by " + name() + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
       };
-      var name = "anon n (where n >= 0)";
+      document.querySelector(".settings .name .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          name(this.innerHTML);
+          this.innerHTML = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".settings .name button").onclick = function() {
+        name(document.querySelector(".settings .name .in").innerHTML);
+        document.querySelector(".settings .name .in").innerHTML = "";
+      };
+      var name = (function() {
+        var name = "anon";
+        return function(newName) {
+          return (name = newName || name);
+        };
+      })();
     </script>
   </body>
 </html>
