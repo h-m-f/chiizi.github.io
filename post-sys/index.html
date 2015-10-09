@@ -50,55 +50,55 @@
             Add profile pics
           </li>
           <li>
-            Add in-client name changing and validation
+            Add in-client handle changing and validation
           </li>
         </ul>
       </div>
     </div>
     <div class="settings gray">
-      <div class="name gray">
+      <div class="handle gray">
         <div class="in gray" contenteditable="plaintext-only"></div>
-        <button class="em gray">change name</button>
+        <button class="em gray">change handle</button>
       </div>
     </div>
     <script>
       document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
-          addPost(name(), this.innerHTML);
+          addPost(handle(), this.innerHTML);
           this.innerHTML = "";
           return false;
         } else {
           return true;
         }
       };
-      var addPost = function(name, content) {
+      var addPost = function(handle, content) {
         var post = document.createElement("div");
-        post.className = "post gray";
+        post.classhandle = "post gray";
         post.innerHTML = content;
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
-        author.className = "author";
-        author.innerHTML = "by " + name() + " @ " + new Date(Date.now()).toString();
+        author.classhandle = "author";
+        author.innerHTML = "by " + handle() + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
       };
-      document.querySelector(".settings .name .in").onkeypress = function(e) {
+      document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
-          name(this.innerHTML);
+          handle(this.innerHTML);
           this.innerHTML = "";
           return false;
         } else {
           return true;
         }
       };
-      document.querySelector(".settings .name button").onclick = function() {
-        name(document.querySelector(".settings .name .in").innerHTML);
-        document.querySelector(".settings .name .in").innerHTML = "";
+      document.querySelector(".settings .handle button").onclick = function() {
+        handle(document.querySelector(".settings .handle .in").innerHTML);
+        document.querySelector(".settings .handle .in").innerHTML = "";
       };
-      var name = (function() {
-        var nameInternal = "anon";
-        return function(newName) {
-          return (nameInternal = newName || nameInternal);
+      var handle = (function() {
+        var handleInternal = "anon";
+        return function(newhandle) {
+          return (handleInternal = newhandle || handleInternal);
         };
       })();
     </script>
