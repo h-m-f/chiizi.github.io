@@ -33,6 +33,7 @@
       document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
           addPost(name, this.innerHTML);
+          this.innerHTML = "";
           return false;
         } else {
           return true;
