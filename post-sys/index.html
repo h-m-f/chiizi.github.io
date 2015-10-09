@@ -84,10 +84,10 @@
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
         author.className  = "author";
-        console.log(handle);
         // author.innerHTML = "by " + handle() + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
+        return handle;
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
