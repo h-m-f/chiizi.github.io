@@ -79,11 +79,11 @@
       };
       var addPost = function(handle, content) {
         var post = document.createElement("div");
-        post.classhandle = "post gray";
+        post.className = "post gray";
         post.innerHTML = content;
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
-        author.classhandle = "author";
+        author.className  = "author";
         author.innerHTML = "by " + handle() + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
