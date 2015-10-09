@@ -62,6 +62,12 @@
       </div>
     </div>
     <script>
+      var handle = (function() {
+        var handleInternal = "anon";
+        return function(newhandle) {
+          return (handleInternal = newhandle || handleInternal);
+        };
+      })();
       document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
           addPost(handle(), this.innerHTML);
@@ -95,12 +101,6 @@
         handle(document.querySelector(".settings .handle .in").innerHTML);
         document.querySelector(".settings .handle .in").innerHTML = "";
       };
-      var handle = (function() {
-        var handleInternal = "anon";
-        return function(newhandle) {
-          return (handleInternal = newhandle || handleInternal);
-        };
-      })();
     </script>
   </body>
 </html>
