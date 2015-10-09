@@ -19,15 +19,18 @@
         background: rgba(0, 0, 0, 0.1);
         border: 1px solid #333;
       }
+      .author {
+        color: #444;
+      }
     </style>
   </head>
   <body>
-    <div class="post gray">
+    <div class="new gray">
       <div class="in gray" contenteditable="plaintext-only"></div>
     </div>
-    <div class="list gray"></div>
+    <div class="feed gray"></div>
     <script>
-      document.querySelector(".post .in").onkeypress = function(e) {
+      document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
           addPost(name, this.innerHTML);
           return false;
@@ -36,7 +39,15 @@
         }
       };
       var addPost = function(name, content) {
-        
+        var post = document.createElement("div");
+        post.className = "post gray";
+        post.appendChild(document.createTextNode(content));
+        post.appendChild(document.createElement("br"));
+        var author = document.createElement("span");
+        author.className = "author";
+        author.appendChild(document.createTextNode("by " + name + " @ " + new Date(Date.now()).toString()));
+        post.appendChild(author);
+        document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
       };
       var name = "chiizi";
     </script>
