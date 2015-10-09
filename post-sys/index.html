@@ -38,6 +38,7 @@
   <body>
     <div class="new gray">
       <div class="in gray" contenteditable="plaintext-only"></div>
+      <button class="em gray">post</button>
     </div>
     <div class="feed gray">
       <div class="gray">
@@ -76,6 +77,10 @@
         } else {
           return true;
         }
+      };
+      document.querySelector(".new button").onclick = function() {
+        addPost(handle(), document.querySelector(".new .in").innerHTML);
+        document.querySelector(".new .in").innerHTML = "";
       };
       var addPost = function(posterName, content) {
         var post = document.createElement("div");
