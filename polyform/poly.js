@@ -3,8 +3,8 @@
 var mouse = {x: 0, y: 0, width: 1, height: 1, in: true, down: false};
 
 document.addEventListener("mousemove", function(e) { 
-  mouse.x = e.clientX || e.pageX; 
-  mouse.y = e.clientY || e.pageY;
+  mouse.x = e.clientX + canvas.getBoundingClientRect().left || e.pageX + canvas.getBoundingClientRect().left; 
+  mouse.y = e.clientY + canvas.getBoundingClientRect().top || e.pageY + canvas.getBoundingClientRect().top;
 }, false);
 document.addEventListener("mousedown", function(e) {
   mouse.down = true;
