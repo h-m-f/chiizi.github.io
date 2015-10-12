@@ -1,6 +1,6 @@
 //25 x 19
 
-var mouse = {x: 0, y: 0, width: 1, height: 1, in: true, down: false};
+var mouse = {x: 0, y: 0, width: 1, height: 1, in: false, down: false};
 
 document.addEventListener("mousemove", function(e) { 
   mouse.x = e.clientX - canvas.getBoundingClientRect().left || e.pageX - canvas.getBoundingClientRect().left; 
