@@ -464,6 +464,7 @@ game.binds = [
       if (!game.debug.trigger) {
         game.debug.open = game.debug.open ? false : true;
         game.debug.trigger = true;
+        return false;
       }
     },
     anAction: function() {
