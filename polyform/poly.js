@@ -459,7 +459,7 @@ game.binds = [
     }
   },
   {
-    code: 168,
+    code: 192,
     action: function() {
       if (!game.debug.trigger) {
         game.debug.open = game.debug.open ? false : true;
