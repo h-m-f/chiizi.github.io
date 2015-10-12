@@ -448,7 +448,7 @@ game.binds = [
     }
   },
   {
-    code: 81,
+    code: 32,
     action: function() {
       game.player.ready = false;
       game.invIsOpen = true;
@@ -459,7 +459,7 @@ game.binds = [
     }
   },
   {
-    code: 80,
+    code: 168,
     action: function() {
       if (!game.debug.trigger) {
         game.debug.open = game.debug.open ? false : true;
