@@ -266,7 +266,7 @@ game.maps = {
     map: Array.apply(null, Array(19)).map(function() {return Array.apply(null, Array(25)).map(function() {return ".";});}),
     substitution: {
       ".": game.tiles.redCarpet,
-      "#": game.tiles.thing
+      "#": game.tiles.wall
     },
     cheatyColDet: function(obj) {
       if (obj.x < 32) {
