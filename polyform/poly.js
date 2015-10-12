@@ -178,7 +178,7 @@ game.items = [
       game.elems.null
     ],
     sprites: {
-      "32x32": "data/objects/null/32x32.png"
+      "32x32": "http://i.imgur.com/AsXyVLs.png"
     }
   },
   {
@@ -189,7 +189,7 @@ game.items = [
       game.elems.fire
     ],
     sprites: {
-      "32x32": "data/objects/sword/32x32.png"
+      "32x32": "http://i.imgur.com/LC6VU9N.png"
     }
   }
 ];
@@ -198,7 +198,7 @@ game.items.error = {
   name: "ERROR",
   kind: game.types.errorKind,
   sprites: {
-    "32x32": "data/objects/error/32x32.png"
+    "32x32": "http://i.imgur.com/hzPr4N6.png"
   }
 };
 
@@ -215,7 +215,7 @@ game.tiles = {
   thing: {
     draw: function(x, y) {
       var i = new Image();
-      i.src = "assets/player2.png";
+      i.src = "http://i.imgur.com/OiL81gs.png";
       ctx.drawImage(i, x, y);
     }
   },
