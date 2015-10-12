@@ -39,6 +39,8 @@ var game = {
   player: {
     ready: true,
     moved: false,
+    staminaCap = 100,
+    stamina = 0,
     width: 32,
     height: 32,
     calcSpeed: 256,
@@ -599,7 +601,11 @@ game.render = function() {
     ctx.fillText("map: " + game.map.name, 10, 60);
 	}
 };
-
+game.stamina = function(){
+	if (game.player.stamina >= game.player.staminaCap) {
+		game.player.stamina++;
+	}
+};
 game.main = function() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
