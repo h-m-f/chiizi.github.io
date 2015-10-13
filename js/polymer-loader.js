@@ -3,8 +3,13 @@ var importPolymer = function(ver) {
   arguments.map(function(e) {
     var link = document.createElement("link");
     link.rel = "import";
-    link.href = this.src + ver + "/components/" + e + "/" + e + ".html";
+    link.href = this.src() + ver + "/components/" + e + "/" + e + ".html";
     document.head.appendChild(link);
   });
 };
-importPolymer.src = "https://www.polymer-project.org/";
+importPolymer.src = (function() {
+  var src = "https://www.polymer-project.org/";
+  return function(newSrc) {
+    return src = newSrc || src;
+  }
+});
