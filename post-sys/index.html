@@ -83,7 +83,7 @@
         author.innerHTML = "by " + posterName + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         if (content)
-          document.body.insertBefore(post, document.body.childNodes[1]);
+          document.body.insertBefore(post, document.body.childNodes[2]);
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
