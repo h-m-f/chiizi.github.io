@@ -1,53 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="/js/polymer-loader.js"></script>
     <title>Posts</title>
     <meta charset="UTF-8" />
     <style>
-      * + *:not(body) {
-        margin-top: 10px;
-      }
-      * {
-        padding: 10px;
-        margin: 0;
-        font-family: monospace;
-        outline: none;
-      }
-      html, span {
-        padding: 0;
-      }
-      ul {
-        list-style-type: none;
-      }
-      li:before {
-        content: "\A0";
-        text-decoration: underline;
-      }
-      .gray {
-        background: rgba(0, 0, 0, 0.05);
-        border: 1px solid #333;
-      }
-      .gray:hover {
-        background: rgba(0, 0, 0, 0.1);
-      }
-      .em {
-        border-width: 3px;
-      }
-      .gray:hover, .em:hover {
-        box-shadow: 0px 0px 0px 1px #333;
-      }
-      .author {
-        color: #444;
-      }
+      
     </style>
   </head>
   <body>
-    <div class="new gray">
-      <div class="in gray" contenteditable="plaintext-only"></div>
-      <button class="em gray">post</button>
-    </div>
-    <div class="feed gray">
-      <div class="gray">
+    <paper-card class="new">
+      <paper-input class="in" label="message here..."></paper-input>
+      <paper-button class="em">post</paper-button>
+    </paper-card>
+    <paper-card class="feed">
+      <paper-card>
         TODO:
         <ul>
           <li>
@@ -60,37 +27,38 @@
             Add in-client handle validation
           </li>
         </ul>
-      </div>
-    </div>
-    <div class="settings gray">
-      <div class="handle gray">
-        <div class="in gray" contenteditable="plaintext-only"></div>
-        <button class="em gray">change handle</button>
-      </div>
-    </div>
+      </paper-card>
+    </paper-card>
+    <paper-card class="settings">
+      <paper-card class="handle">
+        <paper-input class="in" label="new handle"></paper-input>
+        <paper-button class="em">change handle</paper-button>
+      </paper-card>
+    </paper-card>
     <script>
+      importPolymer("1.0", "paper-card", "paper-button");
       var handle = (function() {
-        var handleInternal = "anon";
+        var handleInternal = "a person";
         return function(newhandle) {
           return (handleInternal = newhandle || handleInternal);
         };
       })();
       document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
-          addPost(handle(), this.innerHTML);
-          this.innerHTML = "";
+          addPost(handle(), this.value);
+          this.value = "";
           return false;
         } else {
           return true;
         }
       };
-      document.querySelector(".new button").onclick = function() {
+      document.querySelector(".new paper-button").onclick = function() {
         addPost(handle(), document.querySelector(".new .in").innerHTML);
-        document.querySelector(".new .in").innerHTML = "";
+        document.querySelector(".new .in").value = "";
       };
       var addPost = function(posterName, content) {
-        var post = document.createElement("div");
-        post.className = "post gray";
+        var post = document.createElement("paper-card");
+        post.className = "post";
         post.innerHTML = content;
         post.appendChild(document.createElement("br"));
         var author = document.createElement("span");
@@ -102,16 +70,16 @@
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
-          handle(this.innerHTML);
-          this.innerHTML = "";
+          handle(this.value);
+          this.value = "";
           return false;
         } else {
           return true;
         }
       };
-      document.querySelector(".settings .handle button").onclick = function() {
-        handle(document.querySelector(".settings .handle .in").innerHTML);
-        document.querySelector(".settings .handle .in").innerHTML = "";
+      document.querySelector(".settings .handle paper-button").onclick = function() {
+        handle(document.querySelector(".settings .handle .in").value);
+        document.querySelector(".settings .handle .in").value = "";
       };
     </script>
   </body>
