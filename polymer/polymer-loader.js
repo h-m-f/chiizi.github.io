@@ -1,5 +1,5 @@
 var importPolymer = function(ver) {
-  arguments = Array.slice.call(arguments, 1);
+  arguments = Array.prototype.slice.call(arguments, 1);
   arguments.map(function(e) {
     var link = document.createElement("link");
     link.rel = "import";
