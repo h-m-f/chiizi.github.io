@@ -3,7 +3,7 @@ var importPolymer = function(ver) {
   arguments.map(function(e) {
     var link = document.createElement("link");
     link.rel = "import";
-    link.href = "https://cdn.rawgit.com/download/polymer-cdn/" ver + "/lib/" + e + "/" + e + ".html";
+    link.href = "https://cdn.rawgit.com/download/polymer-cdn/" + ver + "/lib/" + e + "/" + e + ".html";
     document.head.appendChild(link);
   });
 };
