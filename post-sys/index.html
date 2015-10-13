@@ -20,10 +20,15 @@
       }
       paper-card {
         width: 100%;
-        padding: 10px;
       }
       paper-card + paper-card {
         margin-top: 16px;
+      }
+      paper-card < * {
+        margin: 10px;
+      }
+      paper-card < * + * {
+        margin-top: 0;
       }
     </style>
   </head>
