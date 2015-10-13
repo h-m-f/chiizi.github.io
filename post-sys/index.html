@@ -5,7 +5,19 @@
     <title>Posts</title>
     <meta charset="UTF-8" />
     <style>
-      
+      body {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      paper-card {
+        width: 100%;
+      }
+      paper-card + paper-card {
+        margin-top: 16px;
+      }
     </style>
   </head>
   <body>
