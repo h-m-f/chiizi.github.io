@@ -53,7 +53,7 @@
         }
       };
       document.querySelector(".new paper-button").onclick = function() {
-        addPost(handle(), document.querySelector(".new .in").innerHTML);
+        addPost(handle(), document.querySelector(".new .in").value);
         document.querySelector(".new .in").value = "";
       };
       var addPost = function(posterName, content) {
