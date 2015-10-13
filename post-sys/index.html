@@ -32,21 +32,19 @@
       <paper-input class="in" label="message here..."></paper-input>
       <paper-button class="em">post</paper-button>
     </paper-card>
-    <paper-card class="feed">
-      <paper-card>
-        TODO:
-        <ul>
-          <li>
-            Add p2p support
-          </li>
-          <li>
-            Add profile pics
-          </li>
-          <li>
-            Add in-client handle validation
-          </li>
-        </ul>
-      </paper-card>
+    <paper-card>
+      TODO:
+      <ul>
+        <li>
+          Add p2p support
+        </li>
+        <li>
+          Add profile pics
+        </li>
+        <li>
+          Add in-client handle validation
+        </li>
+      </ul>
     </paper-card>
     <paper-card class="settings">
       <paper-card class="handle">
@@ -85,7 +83,7 @@
         author.innerHTML = "by " + posterName + " @ " + new Date(Date.now()).toString();
         post.appendChild(author);
         if (content)
-          document.querySelector(".feed").insertBefore(post, document.querySelector(".feed").childNodes[0]);
+          document.body.insertBefore(post, document.body.childNodes[1]);
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
