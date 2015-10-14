@@ -30,18 +30,26 @@
       .content + .content {
         margin-top: 0;
       }
+      .post-top {
+        height: 84px;
+      }
       .avatar {
-        height: 64px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
         width: 64px;
+        height: 64px;
         border-radius: 50%;
         background: #e91e63;
         color: white;
         line-height: 64px;
         font-size: 30px;
         text-align: center;
-        float: left;
       }
       .title {
+        position: absolute;
+        top: 0;
+        left: 84px;
         height: 100%;
         line-height: 100%;
         color: #e91e63;
@@ -102,7 +110,7 @@
       var addPost = function(posterName, content) {
         var post = document.createElement("paper-card");
           var header = document.createElement("div")
-          header.className = "content";
+          header.className = "post-top";
             var avatar = document.createElement("div");
             avatar.className = "avatar";
             avatar.innerHTML = ":)";
