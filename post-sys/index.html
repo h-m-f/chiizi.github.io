@@ -2,7 +2,81 @@
 <html>
   <head>
     <script src="/scripts.js"></script>
-    <script>importScript("polymer-loader", "hash");</script>
+    <script>
+      importScript(["polymer-loader", function() {
+        with (window) { // cheap hack 'cause i'm lazy
+          importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
+          var handle = (function() {
+            var handleInternal = "a person";
+            return function(newhandle) {
+              return (handleInternal = newhandle || handleInternal);
+            };
+          })();
+          document.querySelector(".new .in").onkeypress = function(e) {
+            if (e.keyCode == 13) {
+              addPost(handle(), this.value);
+              this.value = "";
+              return false;
+            } else {
+              return true;
+            }
+          };
+          document.querySelector(".new paper-button").onclick = function() {
+            addPost(handle(), document.querySelector(".new .in").value);
+            document.querySelector(".new .in").value = "";
+          };
+          var addPost = function(posterName, content) {
+            var post = document.createElement("paper-card");
+              var header = document.createElement("div")
+              header.className = "post-top";
+                var avatar = document.createElement("div");
+                avatar.className = "avatar";
+                avatar.style.backgroundColor = getColor(name);
+                avatar.innerHTML = posterName[0].toUpperCase();
+                var headerText = document.createElement("div");
+                headerText.className = "title";
+                headerText.innerHTML = posterName;
+              header.appendChild(avatar);
+              header.appendChild(headerText);
+              var postContent = document.createElement("div");
+              postContent.className = "content";
+              postContent.innerHTML = content;
+              var time = document.createElement("div");
+              time.className = "content";
+              time.innerHTML = "@ " + new Date(Date.now()).toString();
+            post.appendChild(header);
+            post.appendChild(postContent);
+            post.appendChild(time);
+            if (content)
+          document.body.insertBefore(post, document.body.childNodes[2]);
+      };
+      document.querySelector(".settings .handle .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          handle(this.value);
+          this.value = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".settings .handle paper-button").onclick = function() {
+        handle(document.querySelector(".settings .handle .in").value);
+        document.querySelector(".settings .handle .in").value = "";
+      };
+        }
+      }], ["hash", function() {
+        with (window) { // laaaaaaaaaazy...
+          this.getColor = function(str) {
+            return ([
+              "#F44336", "#E91E63", "#9C27B0", "#673AB7",
+              "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
+              "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
+              "#FF9800", "#FF9800", "#FF5722", "#795548"
+            ])[parseInt(Math.abs(hash(str)).toString(16)[0])];
+          }
+        }
+      }]);
+    </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
     <style>
@@ -89,63 +163,7 @@
       </div>
     </paper-card>
     <script>
-      importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
-      var handle = (function() {
-        var handleInternal = "a person";
-        return function(newhandle) {
-          return (handleInternal = newhandle || handleInternal);
-        };
-      })();
-      document.querySelector(".new .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          addPost(handle(), this.value);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".new paper-button").onclick = function() {
-        addPost(handle(), document.querySelector(".new .in").value);
-        document.querySelector(".new .in").value = "";
-      };
-      var addPost = function(posterName, content) {
-        var post = document.createElement("paper-card");
-          var header = document.createElement("div")
-          header.className = "post-top";
-            var avatar = document.createElement("div");
-            avatar.className = "avatar";
-            avatar.innerHTML = posterName[0].toUpperCase();
-            var headerText = document.createElement("div");
-            headerText.className = "title";
-            headerText.innerHTML = posterName;
-          header.appendChild(avatar);
-          header.appendChild(headerText);
-          var postContent = document.createElement("div");
-          postContent.className = "content";
-          postContent.innerHTML = content;
-          var time = document.createElement("div");
-          time.className = "content";
-          time.innerHTML = "@ " + new Date(Date.now()).toString();
-        post.appendChild(header);
-        post.appendChild(postContent);
-        post.appendChild(time);
-        if (content)
-          document.body.insertBefore(post, document.body.childNodes[2]);
-      };
-      document.querySelector(".settings .handle .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          handle(this.value);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".settings .handle paper-button").onclick = function() {
-        handle(document.querySelector(".settings .handle .in").value);
-        document.querySelector(".settings .handle .in").value = "";
-      };
+      
     </script>
   </body>
 </html>
