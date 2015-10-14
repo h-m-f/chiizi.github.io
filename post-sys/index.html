@@ -30,6 +30,24 @@
       .content + .content {
         margin-top: 0;
       }
+      .avatar {
+        display: inline-block;
+        height: 64px;
+        width: 64px;
+        border-radius: 50%;
+        background: #e91e63;
+        color: white;
+        line-height: 64px;
+        font-size: 30px;
+        text-align: center;
+        float: left;
+      }
+      .title {
+        position: absolute;
+        line-height: 100%;
+        color: #e91e63;
+        float: left;
+      }
     </style>
   </head>
   <body>
@@ -84,13 +102,24 @@
       };
       var addPost = function(posterName, content) {
         var post = document.createElement("paper-card");
-        post.className = "post";
-        post.innerHTML = content;
-        post.appendChild(document.createElement("br"));
-        var author = document.createElement("span");
-        author.className  = "author";
-        author.innerHTML = "by " + posterName + " @ " + new Date(Date.now()).toString();
-        post.appendChild(author);
+          var header = document.createElement("div")
+          header.className = "content";
+            var avatar = document.createElement("div");
+            avatar.innerHTML = ":)";
+            var headerText = document.createElement("div");
+            headerText = posterName;
+          header.appendChild(avatar);
+          header.appendChild(headerText);
+          var postContent = document.createElement("div");
+          postContent.className = "content";
+          postContent.innerHTML = content;
+          post.appendChild(document.createElement("br"));
+          var time = document.createElement("div");
+          time.className = "content";
+          time.innerHTML = "@ " + new Date(Date.now()).toString();
+        post.appendChild(header);
+        post.appendChild(postContent);
+        post.appendChild(time);
         if (content)
           document.body.insertBefore(post, document.body.childNodes[2]);
       };
