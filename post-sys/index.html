@@ -20,17 +20,22 @@
       }
       paper-card {
         width: 100%;
-        padding: 10px;
       }
       paper-card + paper-card {
         margin-top: 16px;
+      }
+      content {
+        margin: 10px;
+      }
+      content + content {
+        margin-top: none;
       }
     </style>
   </head>
   <body>
     <paper-card class="new">
-      <paper-input class="in" label="message here..."></paper-input>
-      <paper-button class="em">post</paper-button>
+      <paper-input class="in content" label="message here..."></paper-input>
+      <paper-button class="content">post</paper-button>
     </paper-card>
     <paper-card>
       TODO:
@@ -47,7 +52,7 @@
       </ul>
     </paper-card>
     <paper-card class="settings">
-      <div class="handle">
+      <div class="handle content">
         <paper-input class="in" label="new handle"></paper-input>
         <paper-button class="em">change handle</paper-button>
       </div>
