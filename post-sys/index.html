@@ -48,7 +48,7 @@
             post.appendChild(postContent);
             post.appendChild(time);
             if (content)
-          document.body.insertBefore(post, document.body.childNodes[2]);
+              document.body.insertBefore(post, document.body.childNodes[2]);
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
@@ -66,7 +66,7 @@
         }
       }], ["hash", function() {
         with (window) { // laaaaaaaaaazy...
-          this.getColor = function(str) {
+          window.getColor = function(str) {
             return ([
               "#F44336", "#E91E63", "#9C27B0", "#673AB7",
               "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
