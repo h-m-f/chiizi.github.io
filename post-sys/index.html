@@ -49,6 +49,7 @@
                 avatar.innerHTML = posterName[0].toUpperCase();
                 var headerText = document.createElement("div");
                 headerText.className = "title";
+                headerText.style.color = color();
                 headerText.innerHTML = posterName;
               header.appendChild(avatar);
               header.appendChild(headerText);
@@ -119,8 +120,8 @@
         width: 64px;
         height: 64px;
         border-radius: 50%;
-        background: #e91e63;
-        color: white;
+        background: #000000;
+        color: #FFFFFF;
         line-height: 64px;
         font-size: 30px;
         text-align: center;
@@ -131,7 +132,7 @@
         left: 84px;
         height: 84px;
         line-height: 84px;
-        color: #e91e63;
+        color: #000000;
         float: left;
       }
     </style>
