@@ -6,9 +6,23 @@
       importScript(["polymer-loader", function() {
         with (window) { // cheap hack 'cause i'm lazy
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
+          var color;
           var handle = (function() {
+              colorInternal = 0;
+              color = (function() {
+              return function() {
+                return ([
+                  "#F44336", "#E91E63", "#9C27B0", "#673AB7",
+                  "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
+                  "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
+                  "#FF9800", "#FF9800", "#FF5722", "#795548"
+                ])[colorInternal];
+              }
+            })();
             var handleInternal = "a person";
             return function(newhandle) {
+              if (handle !== newHandle)
+                colorInternal = Math.round(Math.random() * 16);
               return (handleInternal = newhandle || handleInternal);
             };
           })();
@@ -31,7 +45,7 @@
               header.className = "post-top";
                 var avatar = document.createElement("div");
                 avatar.className = "avatar";
-                avatar.style.backgroundColor = getColor(name);
+                avatar.style.backgroundColor = color();
                 avatar.innerHTML = posterName[0].toUpperCase();
                 var headerText = document.createElement("div");
                 headerText.className = "title";
@@ -63,17 +77,6 @@
         handle(document.querySelector(".settings .handle .in").value);
         document.querySelector(".settings .handle .in").value = "";
       };
-        }
-      }], ["hash", function() {
-        with (window) { // laaaaaaaaaazy...
-          window.getColor = function(str) {
-            return ([
-              "#F44336", "#E91E63", "#9C27B0", "#673AB7",
-              "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
-              "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
-              "#FF9800", "#FF9800", "#FF5722", "#795548"
-            ])[parseInt(Math.abs(hash(str)).toString(16)[0], 16)];
-          }
         }
       }]);
     </script>
