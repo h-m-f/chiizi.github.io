@@ -21,7 +21,7 @@
             })();
             var handleInternal = "a person";
             return function(newhandle) {
-              if (handle !== newhandle || handle)
+              if (handle !== (newhandle || handle))
                 colorInternal = Math.round(Math.random() * 16);
               return (handleInternal = newhandle || handleInternal);
             };
