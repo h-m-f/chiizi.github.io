@@ -39,11 +39,11 @@
         (function main() {
           var cull = _cull(creatures);
           var bred = _breed(creatures);
-          out("CULLED: " + cull + ", NEW: " + bred + ", AVERAGE PERFECTION: " + (function(a) {
+          out("CULLED: " + cull + ", NEW: " + bred + ", AVERAGE PERFECTION: " + Math.round((function(a) {
             var ret = 0;
             a.map((_,i,a)=>ret+=a[i]);
             return ret / a.length;
-          })(creatures).toString(16));
+          })(creatures)).toString(16));
           window.scrollTo(0, document.body.scrollHeight);
           requestAnimationFrame(main);
         })();
