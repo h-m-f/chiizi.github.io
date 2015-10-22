@@ -17,13 +17,11 @@
   <body>
     <io-out></io-out>
     <script>
-      var out = (str => str.split("\n").map(function() {
-        function(str) {
-          var div = document.createElement("div");
-          div.innerHTML = str;
-          document.querySelector("io-out").appendChild(div);
-        };
-      }););
+      var out = (str => str.split("\n").map(function(str) {
+        var div = document.createElement("div");
+        div.innerHTML = str;
+        document.querySelector("io-out").appendChild(div);
+      }));
       (function init() {
         
       })();
