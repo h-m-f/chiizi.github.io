@@ -39,7 +39,7 @@
         (function main(i) {
           var cull = _cull(creatures);
           var bred = _breed(creatures);
-          out("CULLED: " + cull.toString(16) + ", NEW: " + bred ", AVERAGE DISTANCE FROM PERFECTION: " + (function(a) {
+          out("CULLED: " + cull.toString(16) + ", NEW: " + bred + ", AVERAGE DISTANCE FROM PERFECTION: " + (function(a) {
             var ret = 0;
             a.map((_,i,a)=>ret+=a[i]);
             return ret / a.length;
