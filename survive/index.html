@@ -44,6 +44,7 @@
             a.map((_,i,a)=>ret+=a[i]);
             return ret / a.length;
           })(creatures));
+          window.scrollTo(0, document.body.scrollHeight);
           requestAnimationFrame(main);
         })();
       })();
