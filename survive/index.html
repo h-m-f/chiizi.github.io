@@ -28,7 +28,7 @@
         out("done.")
         var _cull = (a => a.splice((a.indexOf(Math.min.apply(Math, a)))).toString());
         var _breed = function(a) {
-          var child = Array(2).fill().map(_=>(a[Math.round(Math.random() * a.length)]).toString(16)));
+          var child = Array(2).fill().map(_=>(a[Math.round(Math.random() * a.length)]).toString(16));
           var str = "";
           for (var i = 0; i < 8; i++) {
             str += (!!Math.round(Math.random()) ? child[0][i] : child[1][i]);
