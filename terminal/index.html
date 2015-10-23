@@ -46,9 +46,12 @@
         var cmdRegistry = [];
         send = function(cmd) {
           try {
-            cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
-          } catch() {
-            out("\"" + cmd.split(" ")[0] + "\" is not a known command.");
+            if (cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0]) != -1)
+              cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
+            else
+              throw "\"" + cmd.split(" ")[0] + "\" is not a known command.";
+          } catch(error) {
+            out(error);
           }
         };
         send.register = function(title, fn) {
