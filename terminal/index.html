@@ -54,7 +54,7 @@
       var cmdHeader = function(str) {
         document.querySelector("io-in .cmd-head").innerHTML = str;
       };
-      cmdHeader("$ ");
+      cmdHeader("$\u00A0");
       
       document.querySelector("io-in div input").onkeypress = function(e) {
         if (e.keyCode == 13) {
