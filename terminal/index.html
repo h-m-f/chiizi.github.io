@@ -45,7 +45,11 @@
       (function() {
         var cmdRegistry = [];
         send = function(cmd) {
-          cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
+          try {
+            cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
+          } catch {
+            out("\"" + cmd.split(" ")[0] + "\" is not a known command.");
+          }
         };
         send.register = function(title, fn) {
           cmdRegistry.push(Array.prototype.slice.call(arguments, 0));
