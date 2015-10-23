@@ -47,7 +47,7 @@
         send = function(cmd) {
           try {
             cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
-          } catch {
+          } catch() {
             out("\"" + cmd.split(" ")[0] + "\" is not a known command.");
           }
         };
