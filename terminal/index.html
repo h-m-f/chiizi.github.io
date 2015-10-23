@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Survive
+    </title>
+    <style>
+      body {
+        background: #000;
+      }
+      * {
+        color: #FFF;
+        font-family: monospace;
+      }
+      io-in div {
+        -webkit-box-flex: 1;
+      }
+      .io-in div input {
+        outline: none;
+        background-color: transparent;
+        margin: 0;
+        width: 100%;
+        font: inherit;
+        border: none;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <io-out></io-out>
+    <io-in><span class="cmd-head"></span><div><input /></div></io-in>
+    <script>
+      var out = (str => str.split("\n").map(function(str) {
+        var div = document.createElement("div");
+        div.innerHTML = str;
+        document.querySelector("io-out").appendChild(div);
+      }));
+      var send;
+      (function() {
+        var cmdRegistry = [];
+        send = function(cmd) {
+          cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
+        };
+        send.register = function(title, fn) {
+          cmdRegistry.push(Array.prototype.slice.call(arguments, 0));
+        };
+      })();
+      var cmdHeader = function(str) {
+        document.querySelector("io-in .cmd-head").innerHTML = str;
+      };
+      cmdHeader("$ ");
+      
+      document.querySelector("io-in div input").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          send(this.innerHTML);
+          this.innerHTML = "";
+          return false;
+        }
+      };
+    </script>
+    <script src="import.js"></script>
+  </body>
+</html>
