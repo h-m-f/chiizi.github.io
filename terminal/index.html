@@ -45,6 +45,7 @@
       (function() {
         var cmdRegistry = [];
         send = function(cmd) {
+          out(cmdHeader + cmd);
           try {
             if (cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0]) != -1)
               cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
@@ -59,7 +60,7 @@
         };
       })();
       var cmdHeader = function(str) {
-        document.querySelector("io-in .cmd-head").innerHTML = str;
+        return document.querySelector("io-in .cmd-head").innerHTML = str || document.querySelector("io-in .cmd-head").innerHTML;
       };
       cmdHeader("$\u00A0");
       
