@@ -58,8 +58,8 @@
       
       document.querySelector("io-in div input").onkeypress = function(e) {
         if (e.keyCode == 13) {
-          send(this.innerHTML);
-          this.innerHTML = "";
+          send(document.querySelector("io-in div input").innerHTML);
+          document.querySelector("io-in div input").innerHTML = "";
           return false;
         }
       };
