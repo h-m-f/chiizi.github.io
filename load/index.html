@@ -1,1 +1,17 @@
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/scripts.js"></script>
+    <title>LOADERS</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <script>
+      importScript([
+        "query-string", function() {
+          queryString("type");
+        }
+      ]);
+    </script>
+  </body>
+</html>
