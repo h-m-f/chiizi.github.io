@@ -48,7 +48,7 @@
           out(cmdHeader() + cmd);
           try {
             if (cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0]) != -1)
-              cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1));
+              cmdRegistry[cmdRegistry.map(e => e[0]).indexOf(cmd.split(" ")[0])][1].apply(null, cmd.split(" ").slice(1), out);
             else
               throw "\"" + cmd.split(" ")[0] + "\" is not a known command.";
           } catch(error) {
