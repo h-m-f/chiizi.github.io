@@ -1,4 +1,4 @@
-send.register("survive", function() {
+send.register("survive", function(_, out) {
   console.log("IT'S WORKING");
   out("CRUDE EVOLUTION SIMULATOR\n(c) HANS FELDE 2015\ngenerating creatures...");
   var creatures = Array(50).fill().map(_ => Math.round(Math.random() * 4294967295));
