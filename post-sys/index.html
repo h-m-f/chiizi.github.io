@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <template class="post">
+      <paper-card>
+        <div class="post-top">
+          <div class="avatar"></div>
+          <div class="title"></div>
+        </div>
+        <div class="content main"></div>
+        <div class="content footer"></div>
+      </paper-card>
+    </template>
     <script src="/scripts.js"></script>
     <script>
       importScript(["polymer-loader", function() {
@@ -8,78 +18,62 @@
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
           var color;
           var handle = (function() {
-              colorInternal = 0;
-              color = (function() {
-              return function() {
-                return ([
-                  "#F44336", "#E91E63", "#9C27B0", "#673AB7",
-                  "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
-                  "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
-                  "#FF9800", "#FF9800", "#FF5722", "#795548"
-                ])[colorInternal];
-              }
-            })();
-            var handleInternal = "a person";
-            return function(newhandle) {
-              if (handle !== (newhandle || handle))
-                colorInternal = Math.round(Math.random() * 16);
-              return (handleInternal = newhandle || handleInternal);
-            };
-          })();
-          document.querySelector(".new .in").onkeypress = function(e) {
-            if (e.keyCode == 13) {
-              addPost(handle(), this.value);
-              this.value = "";
-              return false;
-            } else {
-              return true;
+            colorInternal = 0;
+            color = (function() {
+            return function() {
+              return ([
+                "#F44336", "#E91E63", "#9C27B0", "#673AB7",
+                "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
+                "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
+                "#FF9800", "#FF9800", "#FF5722", "#795548"
+              ])[colorInternal];
             }
+          })();
+          var handleInternal = "a person";
+          return function(newhandle) {
+            if (handle !== (newhandle || handle))
+              colorInternal = Math.round(Math.random() * 16);
+            return (handleInternal = newhandle || handleInternal);
           };
-          document.querySelector(".new paper-button").onclick = function() {
-            addPost(handle(), document.querySelector(".new .in").value);
-            document.querySelector(".new .in").value = "";
-          };
-          var addPost = function(posterName, content) {
-            var post = document.createElement("paper-card");
-              var header = document.createElement("div")
-              header.className = "post-top";
-                var avatar = document.createElement("div");
-                avatar.className = "avatar";
-                avatar.style.backgroundColor = color();
-                avatar.innerHTML = posterName[0].toUpperCase();
-                var headerText = document.createElement("div");
-                headerText.className = "title";
-                headerText.style.color = color();
-                headerText.innerHTML = posterName;
-              header.appendChild(avatar);
-              header.appendChild(headerText);
-              var postContent = document.createElement("div");
-              postContent.className = "content";
-              postContent.innerHTML = content;
-              var time = document.createElement("div");
-              time.className = "content";
-              time.innerHTML = "@ " + new Date(Date.now()).toString();
-            post.appendChild(header);
-            post.appendChild(postContent);
-            post.appendChild(time);
-            if (content)
-              document.body.insertBefore(post, document.body.childNodes[2]);
-      };
-      document.querySelector(".settings .handle .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          handle(this.value);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".settings .handle paper-button").onclick = function() {
-        handle(document.querySelector(".settings .handle .in").value);
-        document.querySelector(".settings .handle .in").value = "";
-      };
-        }
-      }]);
+        })();
+        document.querySelector(".new .in").onkeypress = function(e) {
+          if (e.keyCode == 13) {
+            addPost(handle(), this.value);
+            this.value = "";
+            return false;
+          } else {
+            return true;
+          }
+        };
+        document.querySelector(".new paper-button").onclick = function() {
+          addPost(handle(), document.querySelector(".new .in").value);
+          document.querySelector(".new .in").value = "";
+        };
+        var addPost = function(posterName, content) {
+          var post = document.querySelector("template.post");
+          post.content.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
+          post.content.querySelector(".avatar").style.backgroundColor = headerText.style.color = color();
+          post.content.querySelector(".title").innerHTML = posterName;
+          post.content.querySelector(".content.main").innerHTML = content;
+          post.content.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
+          if (content)
+            document.body.insertBefore(document.importNode(post.content, true), document.body.childNodes[2]);
+        };
+        document.querySelector(".settings .handle .in").onkeypress = function(e) {
+          if (e.keyCode == 13) {
+            handle(this.value);
+            this.value = "";
+            return false;
+          } else {
+            return true;
+          }
+        };
+        document.querySelector(".settings .handle paper-button").onclick = function() {
+          handle(document.querySelector(".settings .handle .in").value);
+          document.querySelector(".settings .handle .in").value = "";
+        };
+      }
+    }]);
     </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
@@ -105,6 +99,9 @@
       }
       .content {
         margin: 10px;
+      }
+      .content.footer {
+        color: rgba(0, 0, 0, 0.5);
       }
       .content + .content {
         margin-top: 0;
