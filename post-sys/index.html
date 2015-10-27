@@ -4,30 +4,31 @@
     <script src="/scripts.js"></script>
     <script>
       importScript(["polymer-loader", function() {
-        importPolymer("1.1.4", "paper-button", "paper-card", "paper-checkbox", "paper-input", "paper-tooltip");
-        var color;
-        var handle = (function() {
-          colorInternal = 0;
-          color = (function() {
-            return function() {
-              return ([
-                "#F44336", "#E91E63", "#9C27B0", "#673AB7",
-                "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
-                "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
-                "#FF9800", "#FF9800", "#FF5722", "#795548"
-              ])[colorInternal];
-            }
-          })();
-          var handleInternal = "a person";
-          return function(newhandle) {
-            if (handle !== (newhandle || handle))
-              colorInternal = Math.round(Math.random() * 16);
-            return (handleInternal = newhandle || handleInternal);
+        with (window) { // cheap hack 'cause i'm lazy
+          importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
+          var color;
+          var handle = (function() {
+              colorInternal = 0;
+              color = (function() {
+              return function() {
+                return ([
+                  "#F44336", "#E91E63", "#9C27B0", "#673AB7",
+                  "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
+                  "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
+                  "#FF9800", "#FF9800", "#FF5722", "#795548"
+                ])[colorInternal];
+              }
+            })();
+            var handleInternal = "a person";
+            return function(newhandle) {
+              if (handle !== (newhandle || handle))
+                colorInternal = Math.round(Math.random() * 16);
+              return (handleInternal = newhandle || handleInternal);
             };
           })();
           document.querySelector(".new .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
-            addPost(handle(), this.value);
+              addPost(handle(), this.value);
               this.value = "";
               return false;
             } else {
@@ -39,45 +40,45 @@
             document.querySelector(".new .in").value = "";
           };
           var addPost = function(posterName, content) {
-          var post = document.createElement("paper-card");
-            var header = document.createElement("div")
-            header.className = "post-top";
-            var avatar = document.createElement("div");
-            avatar.className = "avatar";
-            avatar.style.backgroundColor = color();
-            avatar.innerHTML = posterName[0].toUpperCase();
-            var headerText = document.createElement("div");
-            headerText.className = "title";
-            headerText.style.color = color();
-            headerText.innerHTML = posterName;
-            header.appendChild(avatar);
-            header.appendChild(headerText);
-            var postContent = document.createElement("div");
-            postContent.className = "content";
-            postContent.innerHTML = content;
-            var time = document.createElement("div");
-            time.className = "content";
-            time.innerHTML = "@ " + new Date(Date.now()).toString();
+            var post = document.createElement("paper-card");
+              var header = document.createElement("div")
+              header.className = "post-top";
+                var avatar = document.createElement("div");
+                avatar.className = "avatar";
+                avatar.style.backgroundColor = color();
+                avatar.innerHTML = posterName[0].toUpperCase();
+                var headerText = document.createElement("div");
+                headerText.className = "title";
+                headerText.style.color = color();
+                headerText.innerHTML = posterName;
+              header.appendChild(avatar);
+              header.appendChild(headerText);
+              var postContent = document.createElement("div");
+              postContent.className = "content";
+              postContent.innerHTML = content;
+              var time = document.createElement("div");
+              time.className = "content";
+              time.innerHTML = "@ " + new Date(Date.now()).toString();
             post.appendChild(header);
             post.appendChild(postContent);
             post.appendChild(time);
             if (content)
               document.body.insertBefore(post, document.body.childNodes[2]);
-            };
-          }
-          document.querySelector(".settings .handle .in").onkeypress = function(e) {
-          if (e.keyCode == 13) {
-            handle(this.value);
-            this.value = "";
-            return false;
-          } else {
-            return true;
-          }
-        };
-        document.querySelector(".settings .handle paper-button").onclick = function() {
-          handle(document.querySelector(".settings .handle .in").value);
-          document.querySelector(".settings .handle .in").value = "";
-        };
+      };
+      document.querySelector(".settings .handle .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          handle(this.value);
+          this.value = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".settings .handle paper-button").onclick = function() {
+        handle(document.querySelector(".settings .handle .in").value);
+        document.querySelector(".settings .handle .in").value = "";
+      };
+        }
       }]);
     </script>
     <title>Posts</title>
@@ -164,11 +165,9 @@
         <paper-input class="in" label="new handle"></paper-input>
         <paper-button raised class="em">change handle</paper-button>
       </div>
-      <div class="phrase content">
-        <paper-checkbox class="toggle-on">Enable phrases (not implemented yet!)</paper-checkbox>
-        <paper-input class="in" label="new phrase"></paper-input>
-        <paper-button raised class="em">change phrase</paper-button>
-      </div>
     </paper-card>
+    <script>
+      
+    </script>
   </body>
 </html>
