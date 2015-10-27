@@ -1,4 +1,4 @@
-send.register("import", (path, io) => {
+send.register("import", (io, path) => {
   var process = (path => path.replace(/^\/\//, "https://") + ".js");
   var script = document.createElement("script");
   script.src = process(path);
