@@ -52,7 +52,8 @@
         var addPost = function(posterName, content) {
           var post = document.querySelector("template.post");
           post.content.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
-          post.content.querySelector(".avatar").style.backgroundColor = headerText.style.color = color();
+          post.content.querySelector(".avatar").style.backgroundColor =
+          post.content.querySelector(".title").style.color = color();
           post.content.querySelector(".title").innerHTML = posterName;
           post.content.querySelector(".content.main").innerHTML = content;
           post.content.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
