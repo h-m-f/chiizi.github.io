@@ -8,6 +8,7 @@
           <div class="title"></div>
         </div>
         <div class="content main"></div>
+        <div class="content phrase"></div>
         <div class="content footer"></div>
       </paper-card>
     </template>
@@ -35,6 +36,11 @@
           return (handleInternal = newhandle || handleInternal);
         };
       })();
+      var phrase = (function(a) {
+        return function(b) {
+          return a = b || a;
+        };
+      })("");
       document.querySelector(".new .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
           addPost(handle(), this.value);
@@ -55,6 +61,7 @@
         post.content.querySelector(".title").style.color = color();
         post.content.querySelector(".title").innerHTML = posterName;
         post.content.querySelector(".content.main").innerHTML = content;
+        post.content.querySelector(".content.phrase").innerHTML = phrase();
         post.content.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
         if (content)
           document.body.insertBefore(document.importNode(post.content, true), document.body.childNodes[2]);
@@ -71,6 +78,19 @@
       document.querySelector(".settings .handle paper-button").onclick = function() {
         handle(document.querySelector(".settings .handle .in").value);
         document.querySelector(".settings .handle .in").value = "";
+      };
+      document.querySelector(".settings .phrase .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          phrase(this.value);
+          this.value = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".settings .phrase paper-button").onclick = function() {
+        phrase(document.querySelector(".settings .phrase .in").value);
+        document.querySelector(".settings .phrase .in").value = "";
       };
     }]);
     </script>
@@ -101,6 +121,9 @@
       }
       .content.footer {
         color: rgba(0, 0, 0, 0.5);
+      }
+      .content.footer:hover {
+        color: rgba(0, 0, 0, 0.75);
       }
       .content + .content {
         margin-top: 0;
@@ -161,9 +184,10 @@
         <paper-input class="in" label="new handle"></paper-input>
         <paper-button raised class="em">change handle</paper-button>
       </div>
+      <div class="phrase content">
+        <paper-input class="in" label="new phrase"></paper-input>
+        <paper-button raised class="em">change phrase</paper-button>
+      </div>
     </paper-card>
-    <script>
-      
-    </script>
   </body>
 </html>
