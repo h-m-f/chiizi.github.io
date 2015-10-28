@@ -14,66 +14,64 @@
     <script src="/scripts.js"></script>
     <script>
       importScript(["polymer-loader", function() {
-        with (window) { // cheap hack 'cause i'm lazy
-          importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
-          var color;
-          var handle = (function() {
-            colorInternal = 0;
-            color = (function() {
-            return function() {
-              return ([
-                "#F44336", "#E91E63", "#9C27B0", "#673AB7",
-                "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
-                "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
-                "#FF9800", "#FF9800", "#FF5722", "#795548"
-              ])[colorInternal];
-            }
-          })();
-          var handleInternal = "a person";
-          return function(newhandle) {
-            if (handle !== (newhandle || handle))
-              colorInternal = Math.round(Math.random() * 16);
-            return (handleInternal = newhandle || handleInternal);
-          };
+        importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
+        var color;
+        var handle = (function() {
+          colorInternal = 0;
+          color = (function() {
+          return function() {
+            return ([
+              "#F44336", "#E91E63", "#9C27B0", "#673AB7",
+              "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
+              "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
+              "#FF9800", "#FF9800", "#FF5722", "#795548"
+            ])[colorInternal];
+          }
         })();
-        document.querySelector(".new .in").onkeypress = function(e) {
-          if (e.keyCode == 13) {
-            addPost(handle(), this.value);
-            this.value = "";
-            return false;
-          } else {
-            return true;
-          }
+        var handleInternal = "a person";
+        return function(newhandle) {
+          if (handle !== (newhandle || handle))
+            colorInternal = Math.round(Math.random() * 16);
+          return (handleInternal = newhandle || handleInternal);
         };
-        document.querySelector(".new paper-button").onclick = function() {
-          addPost(handle(), document.querySelector(".new .in").value);
-          document.querySelector(".new .in").value = "";
-        };
-        var addPost = function(posterName, content) {
-          var post = document.querySelector("template.post");
-          post.content.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
-          post.content.querySelector(".avatar").style.backgroundColor =
-          post.content.querySelector(".title").style.color = color();
-          post.content.querySelector(".title").innerHTML = posterName;
-          post.content.querySelector(".content.main").innerHTML = content;
-          post.content.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
-          if (content)
-            document.body.insertBefore(document.importNode(post.content, true), document.body.childNodes[2]);
-        };
-        document.querySelector(".settings .handle .in").onkeypress = function(e) {
-          if (e.keyCode == 13) {
-            handle(this.value);
-            this.value = "";
-            return false;
-          } else {
-            return true;
-          }
-        };
-        document.querySelector(".settings .handle paper-button").onclick = function() {
-          handle(document.querySelector(".settings .handle .in").value);
-          document.querySelector(".settings .handle .in").value = "";
-        };
-      }
+      })();
+      document.querySelector(".new .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          addPost(handle(), this.value);
+          this.value = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".new paper-button").onclick = function() {
+        addPost(handle(), document.querySelector(".new .in").value);
+        document.querySelector(".new .in").value = "";
+      };
+      var addPost = function(posterName, content) {
+        var post = document.querySelector("template.post");
+        post.content.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
+        post.content.querySelector(".avatar").style.backgroundColor =
+        post.content.querySelector(".title").style.color = color();
+        post.content.querySelector(".title").innerHTML = posterName;
+        post.content.querySelector(".content.main").innerHTML = content;
+        post.content.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
+        if (content)
+          document.body.insertBefore(document.importNode(post.content, true), document.body.childNodes[2]);
+      };
+      document.querySelector(".settings .handle .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          handle(this.value);
+          this.value = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".settings .handle paper-button").onclick = function() {
+        handle(document.querySelector(".settings .handle .in").value);
+        document.querySelector(".settings .handle .in").value = "";
+      };
     }]);
     </script>
     <title>Posts</title>
