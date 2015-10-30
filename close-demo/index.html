@@ -8,14 +8,25 @@
     position: relative;
     transition: transform 0.5s ease-in, opacity 0.5s ease-in;
   }
+  .box.removed.switched {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  .box.slide.switched {
+    transform: translateX(-90%);
+  }
 </style>
-<div class="box"></div>
+<div class="box removed"></div>
+<div class="box slide"></div>
 <script>
-  document.querySelector(".box").onclick = function() {
-    this.style.transform = "translateX(-50%)";
-    this.style.opacity = "0";
+  document.querySelector(".box.removed").onclick = function() {
+    this.onclick = (_=>_);
+    this.classList.add("switched");
     setTimeout(function() {
       document.querySelector(".box").remove();
     }, 500);
+  };
+  document.querySelector(".box.slide").onclick = function() {
+    this.classList.toggle("switched");
   };
 </script>
