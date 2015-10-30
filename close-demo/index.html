@@ -1,1 +1,21 @@
-
+<!DOCTYPE html>
+<title>Close Demo</title>
+<style>
+  .box {
+    border: 1px #000 solid;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transition: transform 0.5s ease-in, opacity 0.5s ease-in;
+  }
+</style>
+<div class="box"></div>
+<script>
+  document.querySelector(".box").onclick = function() {
+    this.style.transform = "translateX(-50%)";
+    this.style.opacity = "0";
+    setTimeout(function() {
+      document.querySelector(".box").remove();
+    }, 500);
+  };
+</script>
