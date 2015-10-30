@@ -58,13 +58,6 @@
       };
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
-        post.querySelector(".close").onclick = function() {
-          this.onclick = (_=>_);
-          post.classList.add("ghost");
-          setTimeout(function() {
-            post.parentElement.removeChild(post);
-          }, 500);
-        };
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
         post.querySelector(".title").style.color = color();
