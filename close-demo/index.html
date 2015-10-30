@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <title>Close Demo</title>
 <style>
+  * {
+    box-sizing: border-box;
+    padding: 0px 8px;
+  }
+  * + * {
+    margin-top: 8px;
+  }
   .box {
     border: 1px #000 solid;
     width: 200px;
@@ -12,8 +19,17 @@
     transform: translateX(-100%);
     opacity: 0;
   }
+  .box.slide:not(.swap):before {
+    content: "<<";
+    line-height: 200px;
+  }
   .box.slide.switched {
     transform: translateX(-90%);
+  }
+  .box.slide.swap:after {
+    content: ">>";
+    float: right;
+    line-height: 200px;
   }
 </style>
 <div class="box removed"></div>
