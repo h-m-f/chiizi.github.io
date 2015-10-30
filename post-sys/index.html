@@ -77,7 +77,7 @@
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
         post.querySelector(".title").style.color = (hashes.indexOf(hash(auth)) +1) ? "#000" : color();
-        post.querySelector(".title").innerHTML = posterName + (hashes.indexOf(hash(auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(auth))] + "]" : "";
+        post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(auth))] + "]" : "");
         post.querySelector(".content.main").innerHTML = content;
         post.querySelector(".content.phrase").innerHTML = phrase();
         post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
