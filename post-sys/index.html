@@ -61,7 +61,10 @@
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
         post.querySelector(".close").onclick = (function() {
-          var n = postN;
+          var n = (_=>{
+            var m = postN;
+            return (_=>postN - m);
+          })();
           return function() {
             //this.onclick = null;
             console.log("posts == " + document.querySelectorAll("body > .post"));
