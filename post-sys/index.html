@@ -60,7 +60,7 @@
       };
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
-        post.id = "post-" + postN;
+        post.querySelector(".post").id = "post-" + postN;
         var id = postN;
         post.querySelector(".close").onclick = (function() {
           return function() {
