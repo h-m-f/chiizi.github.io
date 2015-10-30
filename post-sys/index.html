@@ -69,11 +69,11 @@
             //this.onclick = null;
             console.log("posts == " + document.querySelectorAll("body > .post"));
             console.log("length == " + document.querySelectorAll("body > .post").length);
-            console.log("n == " + n);
-            console.log("postIndex == " + document.querySelectorAll("body > .post").length - n - 1);
-            document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n - 1].classList.add("ghost");
+            console.log("n == " + n());
+            console.log("postIndex == " + document.querySelectorAll("body > .post").length - n() - 1);
+            document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n() - 1].classList.add("ghost");
             setTimeout(function() {
-              document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n - 1].remove();
+              document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n() - 1].remove();
             }, 500);
           };
         })();
