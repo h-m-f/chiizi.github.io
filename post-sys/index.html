@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <template class="post">
-      <paper-card>
+    <template class="post-proto">
+      <paper-card class="post">
         <div class="post-top">
           <div class="avatar"></div>
           <div class="title"></div>
@@ -57,7 +57,12 @@
         document.querySelector(".new .in").value = "";
       };
       var addPost = function(posterName, content) {
-        var post = document.querySelector("template.post");
+        var post = document.querySelector(".post-proto");
+        post.content.querySelector(".close").onclick = function() {
+          this.onclick = (_=>_);
+          this.classList.add("ghost");
+          setTimeout(($ => (_=>$.remove()))(this), 500);
+        };
         post.content.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.content.querySelector(".avatar").style.backgroundColor =
         post.content.querySelector(".title").style.color = color();
@@ -120,6 +125,12 @@
       }
       paper-card > paper-material {
         pointer-events: none;
+      }
+      .post {
+        transition: opacity 0.5s ease-out;
+      }
+      .post.ghost {
+        opacity: 0;
       }
       .content {
         margin: 10px;
