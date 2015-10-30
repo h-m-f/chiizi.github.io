@@ -58,12 +58,6 @@
       };
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
-        post.querySelector(".close").onclick = function() {
-          //this.onclick = (_=>_);
-          console.log("asdf");
-          this.classList.add("ghost");
-          setTimeout(post.remove, 500);
-        };
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
         post.querySelector(".title").style.color = color();
@@ -73,6 +67,12 @@
         post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
         if (content)
           document.body.insertBefore(post, document.body.childNodes[2]);
+        
+        post.querySelector(".close").onclick = function() {
+          this.onclick = (_=>_);
+          post.classList.add("ghost");
+          setTimeout(post.remove, 500);
+        };
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
