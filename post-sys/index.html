@@ -59,7 +59,8 @@
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
         post.querySelector(".close").onclick = function() {
-          this.onclick = (_=>_);
+          //this.onclick = (_=>_);
+          console.log("asdf");
           this.classList.add("ghost");
           setTimeout(post.remove, 500);
         };
