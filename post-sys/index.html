@@ -61,9 +61,7 @@
         post.querySelector(".close").onclick = function() {
           this.onclick = (_=>_);
           this.classList.add("ghost");
-          setTimeout(function() {
-            post.querySelector(".close").remove();
-          }, 500);
+          setTimeout(post.remove, 500);
         };
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
