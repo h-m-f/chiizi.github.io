@@ -16,8 +16,9 @@
     </template>
     <script src="/scripts.js"></script>
     <script>
-    var debug = [];
+      var debug = [];
       importScript(["polymer-loader", function() {
+        var postN = 0;
         importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
         var color;
         var handle = (function() {
@@ -59,6 +60,12 @@
       };
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
+        var postN = postN + 1;
+        post.querySelector(".close").onclick = function() {
+          this.onclick = null;
+          document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN].classList.add("ghost");
+          setTimeout(document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN].remove, 500);
+        };
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
         post.querySelector(".title").style.color = color();
@@ -66,9 +73,10 @@
         post.querySelector(".content.main").innerHTML = content;
         post.querySelector(".content.phrase").innerHTML = phrase();
         post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
-        if (content)
-          debug.push(post);
-          document.body.insertBefore(post, document.body.childNodes[2])
+        if (content) {
+          postN++;
+          document.body.insertBefore(post, document.body.childNodes[2]);
+        }
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
