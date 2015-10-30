@@ -69,7 +69,9 @@
             console.log("n == " + n);
             console.log("postIndex == " + document.querySelectorAll("body > .post").length - n - 1);
             document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n - 1].classList.add("ghost");
-            setTimeout(document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n - 1].remove, 500);
+            setTimeout(function() {
+              document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - n - 1].remove();
+            }, 500);
           };
         })();
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
