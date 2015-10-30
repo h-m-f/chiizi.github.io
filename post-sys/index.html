@@ -64,7 +64,7 @@
           var postN = postN;
           return function() {
             this.onclick = null;
-            document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN] - 1.classList.add("ghost");
+            document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN - 1].classList.add("ghost");
             setTimeout(document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN - 1].remove, 500);
           };
         })();
