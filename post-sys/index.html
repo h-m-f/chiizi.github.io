@@ -16,6 +16,7 @@
     </template>
     <script src="/scripts.js"></script>
     <script>
+    var debug;
       importScript(["polymer-loader", function() {
         importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
         var color;
@@ -67,8 +68,8 @@
         post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
         if (content)
           (function(i) {
+            debug.push(i);
             i.querySelector(".close").onclick = function() {
-              i.querySelector(".close").onclick = (_=>_);
               i.querySelector(".post").classList.add("ghost");
               setTimeout(i.querySelector(".post").remove, 500);
             }
