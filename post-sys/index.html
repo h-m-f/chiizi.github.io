@@ -67,13 +67,8 @@
         post.querySelector(".content.phrase").innerHTML = phrase();
         post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
         if (content)
-          (function(i) {
-            debug.push(i);
-            i.querySelector(".close").onclick = function() {
-              i.querySelector(".post").classList.add("ghost");
-              setTimeout(i.querySelector(".post").remove, 500);
-            }
-          })(document.body.insertBefore(post, document.body.childNodes[2]));
+          debug.push(post);
+          document.body.insertBefore(post, document.body.childNodes[2])
       };
       document.querySelector(".settings .handle .in").onkeypress = function(e) {
         if (e.keyCode == 13) {
