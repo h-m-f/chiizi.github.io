@@ -60,12 +60,14 @@
       };
       var addPost = function(posterName, content) {
         var post = document.importNode(document.querySelector(".post-proto").content, true);
-        var postN = postN + 1;
-        post.querySelector(".close").onclick = function() {
-          this.onclick = null;
-          document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN].classList.add("ghost");
-          setTimeout(document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN].remove, 500);
-        };
+        post.querySelector(".close").onclick = (function() {
+          var postN = postN;
+          return function() {
+            this.onclick = null;
+            document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN].classList.add("ghost");
+            setTimeout(document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN].remove, 500);
+          };
+        })();
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
         post.querySelector(".title").style.color = color();
