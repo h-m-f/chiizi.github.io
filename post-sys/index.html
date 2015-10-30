@@ -63,7 +63,11 @@
         post.querySelector(".close").onclick = (function() {
           var postN = postN;
           return function() {
-            this.onclick = null;
+            //this.onclick = null;
+            console.log("posts == " + document.querySelectorAll("body > .post"));
+            console.log("length == " + document.querySelectorAll("body > .post").length);
+            console.log("postN == " + postN);
+            console.log("postIndex == " + document.querySelectorAll("body > .post").length - postN - 1);
             document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN - 1].classList.add("ghost");
             setTimeout(document.querySelectorAll("body > .post")[document.querySelectorAll("body > .post").length - postN - 1].remove, 500);
           };
