@@ -16,20 +16,25 @@
     transition: transform 0.5s ease-in, opacity 0.5s ease-in;
   }
   .box.removed.switched {
-    transform: translateX(-100%);
+    transform: translateX(-200px);
     opacity: 0;
   }
-  .box.slide:not(.swap):before {
-    content: "<<";
+  .box.slide.switched {
+    transform: translateX(-189px);
+  }
+  .box.slide:before, .box.slide:after {
+    transition: opacity 0.5s ease-in;
     line-height: 200px;
   }
-  .box.slide.switched {
-    transform: translateX(-90%);
+  .box.slide:before {
+    content: "<<";
   }
-  .box.slide.swap:after {
+  .box.slide:after {
     content: ">>";
     float: right;
-    line-height: 200px;
+  }
+  .box.slide.switched:before, .box.slide:not(.switched):after {
+    opacity: 0;
   }
 </style>
 <div class="box removed"></div>
@@ -39,7 +44,7 @@
     this.onclick = (_=>_);
     this.classList.add("switched");
     setTimeout(function() {
-      document.querySelector(".box").remove();
+      document.querySelector(".box.removed").remove();
     }, 500);
   };
   document.querySelector(".box.slide").onclick = function() {
