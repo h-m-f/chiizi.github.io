@@ -33,99 +33,95 @@
               "#FF9800", "#FF9800", "#FF5722", "#795548"
             ])[colorInternal];
           })
-        })();
-        var handleInternal = "a person";
-        return function(newhandle) {
-          if (handle !== (newhandle || handle))
-            colorInternal = Math.round(Math.random() * 16);
-          return (handleInternal = newhandle || handleInternal);
-        };
-      })();
-      var phrase = (function(a) {
-        return function(b) {
-          return a = b || a;
-        };
-      })("");
-      document.querySelector(".new .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          addPost(handle(), this.value);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".new paper-button").onclick = function() {
-        addPost(handle(), document.querySelector(".new .in").value);
-        document.querySelector(".new .in").value = "";
-      };
-      var addPost = function(posterName, content) {
-        var hashes = ["b3A=", "YWRtaW4=", "Z3JhbmRsdWNpZmVy"];
-        var post = document.importNode(document.querySelector(".post-proto").content, true);
-        post.querySelector(".post").id = "post-" + postN;
-        var id = postN;
-        post.querySelector(".close").onclick = (function() {
-          return function() {
-            //this.onclick = null;
-            document.getElementById("post-" + id).classList.add("ghost");
-            setTimeout(function() {
-              document.getElementById("post-" + id).remove();
-            }, 500);
+          var handleInternal = "a person";
+          return function(newhandle) {
+            if (handle !== (newhandle || handle))
+              colorInternal = Math.round(Math.random() * 16);
+            return (handleInternal = newhandle || handleInternal);
           };
         })();
-        post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
-        post.querySelector(".avatar").style.backgroundColor =
-        post.querySelector(".title").style.color = (hashes.indexOf(hash(localStorage.auth)) +1) ? "#000" : color();
-        post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(localStorage.auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(localStorage.auth))] + "]" : "");
-        post.querySelector(".content.main").innerHTML = content;
-        post.querySelector(".content.phrase").innerHTML = phrase();
-        post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
-        if (content) {
-          postN++;
-          document.body.insertBefore(post, document.body.childNodes[2]);
-        }
-      };
-      document.querySelector(".settings .handle .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          handle(this.value);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".settings .handle paper-button").onclick = function() {
-        handle(document.querySelector(".settings .handle .in").value);
-        document.querySelector(".settings .handle .in").value = "";
-      };
-      document.querySelector(".settings .phrase .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          phrase(this.value);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".settings .phrase paper-button").onclick = function() {
-        phrase(document.querySelector(".settings .phrase .in").value);
-        document.querySelector(".settings .phrase .in").value = "";
-      };
-    });
-    document.querySelector(".hidden-settings .auth .in").onkeypress = function(e) {
-        if (e.keyCode == 13) {
-          localStorage.setItem("auth", this.value || localStorage["auth"]);
-          this.value = "";
-          return false;
-        } else {
-          return true;
-        }
-      };
-      document.querySelector(".hidden-settings .auth paper-button").onclick = function() {
-        localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
-        document.querySelector(".hidden-settings .auth .in").value = "";
-      };
-    });
+        var phrase = (function(a) {
+          return b => a = b || a;
+        })("");
+        document.querySelector(".new .in").onkeypress = function(e) {
+          if (e.keyCode == 13) {
+            addPost(handle(), this.value);
+            this.value = "";
+            return false;
+          } else {
+            return true;
+          }
+        };
+        document.querySelector(".new paper-button").onclick = function() {
+          addPost(handle(), document.querySelector(".new .in").value);
+          document.querySelector(".new .in").value = "";
+        };
+        var addPost = function(posterName, content) {
+          var hashes = ["b3A=", "YWRtaW4=", "Z3JhbmRsdWNpZmVy"];
+          var post = document.importNode(document.querySelector(".post-proto").content, true);
+          post.querySelector(".post").id = "post-" + postN;
+          var id = postN;
+          post.querySelector(".close").onclick = (function() {
+            return function() {
+              //this.onclick = null;
+              document.getElementById("post-" + id).classList.add("ghost");
+              setTimeout(function() {
+                document.getElementById("post-" + id).remove();
+              }, 500);
+            };
+          })();
+          post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
+          post.querySelector(".avatar").style.backgroundColor =
+          post.querySelector(".title").style.color = (hashes.indexOf(hash(localStorage.auth)) +1) ? "#000" : color();
+          post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(localStorage.auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(localStorage.auth))] + "]" : "");
+          post.querySelector(".content.main").innerHTML = content;
+          post.querySelector(".content.phrase").innerHTML = phrase();
+          post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
+          if (content) {
+            postN++;
+            document.body.insertBefore(post, document.body.childNodes[2]);
+          }
+        };
+        document.querySelector(".settings .handle .in").onkeypress = function(e) {
+          if (e.keyCode == 13) {
+            handle(this.value);
+            this.value = "";
+            return false;
+          } else {
+            return true;
+          }
+        };
+        document.querySelector(".settings .handle paper-button").onclick = function() {
+          handle(document.querySelector(".settings .handle .in").value);
+          document.querySelector(".settings .handle .in").value = "";
+        };
+        document.querySelector(".settings .phrase .in").onkeypress = function(e) {
+          if (e.keyCode == 13) {
+            phrase(this.value);
+            this.value = "";
+            return false;
+          } else {
+            return true;
+          }
+        };
+        document.querySelector(".settings .phrase paper-button").onclick = function() {
+          phrase(document.querySelector(".settings .phrase .in").value);
+          document.querySelector(".settings .phrase .in").value = "";
+        };
+        document.querySelector(".hidden-settings .auth .in").onkeypress = function(e) {
+          if (e.keyCode == 13) {
+            localStorage.setItem("auth", this.value || localStorage["auth"]);
+            this.value = "";
+            return false;
+          } else {
+            return true;
+          }
+        };
+        document.querySelector(".hidden-settings .auth paper-button").onclick = function() {
+          localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
+          document.querySelector(".hidden-settings .auth .in").value = "";
+        };
+      });
     </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
