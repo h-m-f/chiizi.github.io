@@ -17,8 +17,8 @@
     <script src="/scripts.js"></script>
     <script>
       var debug = [];
-      var auth = "";
-      importScript(["polymer-loader", function() {
+      localStorage.setItem("auth", localStorage["auth"] || "");
+      importScript(["polymer-loader", "cookies"], function() {
         var hash = window[eval('"'+([0x62, 0x74, 0x6F, 0x61]).map(n=>"\\x"+n.toString(16)).join("")+'"')];
         postN = 0;
         importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
@@ -76,8 +76,8 @@
         })();
         post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
         post.querySelector(".avatar").style.backgroundColor =
-        post.querySelector(".title").style.color = (hashes.indexOf(hash(auth)) +1) ? "#000" : color();
-        post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(auth))] + "]" : "");
+        post.querySelector(".title").style.color = (hashes.indexOf(hash(localStorage.auth)) +1) ? "#000" : color();
+        post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(localStorage.auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(localStorage.auth))] + "]" : "");
         post.querySelector(".content.main").innerHTML = content;
         post.querySelector(".content.phrase").innerHTML = phrase();
         post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
@@ -112,7 +112,21 @@
         phrase(document.querySelector(".settings .phrase .in").value);
         document.querySelector(".settings .phrase .in").value = "";
       };
-    }]);
+    });
+    document.querySelector(".hidden-settings .auth .in").onkeypress = function(e) {
+        if (e.keyCode == 13) {
+          localStorage.setItem("auth", this.value || localStorage["auth"]);
+          this.value = "";
+          return false;
+        } else {
+          return true;
+        }
+      };
+      document.querySelector(".hidden-settings .auth paper-button").onclick = function() {
+        localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
+        document.querySelector(".hidden-settings .auth .in").value = "";
+      };
+    });
     </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
@@ -199,6 +213,9 @@
         border-radius: 2px;
         background: #F44336;
       }
+      .hidden {
+        display: none;
+      }
     </style>
   </head>
   <body>
@@ -232,6 +249,12 @@
       <div class="phrase content">
         <paper-input class="in" label="new phrase"></paper-input>
         <paper-button raised class="em">change phrase</paper-button>
+      </div>
+    </paper-card>
+    <paper-card class="hidden hidden-settings">
+      <div class="auth content">
+        <paper-input class="in" label="enter authentication"></paper-input>
+        <paper-button raised class="em">authenticate</paper-button>
       </div>
     </paper-card>
   </body>
