@@ -122,8 +122,8 @@
           document.querySelector(".hidden-settings .auth .in").value = "";
         };
       });
-      var unhideHiddenSettings = function(b) {
-        document.querySelector(".hidden-settings").classList[b ? "add" : "remove"]("hidden");
+      var hiddenSettings = function(b) {
+        document.querySelector(".hidden-settings").classList[b ? "remove" : "add"]("hidden");
       };
     </script>
     <title>Posts</title>
