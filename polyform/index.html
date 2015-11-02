@@ -8,6 +8,13 @@
     <link rel="icon" type="image/png" href="http://i.imgur.com/9jkunMZ.png">
   </head>
   <body>
-    <script src="poly.js"></script>
+    <script src="/scripts.js"></script>
+    <script>
+      var useCuddly = function(b) {
+        var script = document.createElement("script");
+        script.src = "poly" + (b ? "-cuddly" : "") + ".js";
+        document.body.appendChild(script);
+      };
+    </script>
   </body>
 </html>
