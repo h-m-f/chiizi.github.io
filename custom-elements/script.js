@@ -8,4 +8,4 @@ var TerminalLineProto = Object.create(HTMLElement.prototype, {
   }
 });
 
-var XMeep = document.registerElement("terminal-line", {prototype: TerminalLineProto});
+var HTMLTerminalLineElement = document.registerElement("terminal-line", {prototype: TerminalLineProto});
