@@ -65,7 +65,8 @@
             }
           };
           document.querySelector(".new paper-button").onclick = function() {
-            addPost(handle(), document.querySelector(".new .in").value);
+            //addPost(handle(), document.querySelector(".new .in").value);
+            send(handle(), document.querySelector(".new .in").value);
             document.querySelector(".new .in").value = "";
           };
           var addPost = function(posterName, content) {
