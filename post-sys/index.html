@@ -148,7 +148,7 @@
 			console.log('Received:'+ st_received_message);
 			var received_message = JSON.parse(st_received_message);
 			if (received_message.name != undefined && received_message.message != undefined) {
-				appPost(received_message.name, received_message.message);
+				addPost(received_message.name, received_message.message);
 			}
 		};
 		// add event handler for diconnection 
