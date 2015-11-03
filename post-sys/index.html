@@ -20,6 +20,17 @@
       localStorage.setItem("auth", localStorage["auth"] || "");
       importScript("polymer-loader", function() {
         importScript("hash", function() {
+          var socket;
+          setTimeout(function() {
+            socket.onmessage = function(e) {
+              var msg = JSON.parse(e.data);
+              if (msg.name != undefined && msg.message != undefined) {
+		            addPost(msg.name, msg.message);
+		            
+			        }
+            };
+          }, 500);
+          
           postN = 0;
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
           var color;
@@ -238,6 +249,10 @@
             Add in-client handle validation
           </li>
         </ul>
+      </div>
+      <hr />
+      <div class="content">
+        Powered by <a href="https://archex.ca/">Archex WebSocketServer</a>
       </div>
     </paper-card>
     <paper-card class="settings">
