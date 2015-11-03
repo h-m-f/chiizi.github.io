@@ -135,11 +135,7 @@
             document.querySelector(".hidden-settings .auth .in").value = "";
           };
         })
-      });
-      var hiddenSettings = function(b) {
-        document.querySelector(".hidden-settings").classList[b ? "remove" : "add"]("hidden");
-      };
-      	var ws;
+        var ws;
 	function wsOpen(){
 		ws = new WebSocket('ws://achex.ca:4010');
 		// add event handler for incomming message
@@ -171,6 +167,11 @@
 		console.log('Sent:'+ '{"to":"PS","name":"'+_name+'","message":"'+_message+'"}');
 		ws.send('{"to":"PS","name":"'+_name+'","message":"'+_message+'"}');
 	}
+      });
+      var hiddenSettings = function(b) {
+        document.querySelector(".hidden-settings").classList[b ? "remove" : "add"]("hidden");
+      };
+      	
     </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
