@@ -56,7 +56,8 @@
           })("");
           document.querySelector(".new .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
-              addPost(handle(), this.value);
+              //addPost(handle(), this.value);
+              send(handle(), this.value);
               this.value = "";
               return false;
             } else {
@@ -137,6 +138,38 @@
       var hiddenSettings = function(b) {
         document.querySelector(".hidden-settings").classList[b ? "remove" : "add"]("hidden");
       };
+      	var ws;
+	function wsOpen(){
+		ws = new WebSocket('ws://achex.ca:4010');
+		// add event handler for incomming message
+		ws.onmessage = function(evt){
+			var st_received_message = evt.data;
+			console.log('Received:'+ st_received_message);
+			var received_message = JSON.parse(st_received_message);
+			if (received_message.name != undefined && received_message.message != undefined) {
+				appPost(received_message.name, received_message.message);
+			}
+		};
+		// add event handler for diconnection 
+		ws.onclose= function(evt){
+			console.log('Diconnected');
+		};
+		// add event handler for error 
+		ws.onerror= function(evt){
+			console.log('Error');
+		};
+		// add event handler for new connection 
+		ws.onopen= function(evt){
+			console.log('Connected');
+			ws.send('{"setID":"PS","passwd":"Password backwords"}');
+		};
+	}
+	setTimeout(wsOpen,500);
+	// make a simple send function
+	function send(_name, _message){
+		console.log('Sent:'+ '{"to":"PS","name":"'+_name+'","message":"'+_message+'"}');
+		ws.send('{"to":"PS","name":"'+_name+'","message":"'+_message+'"}');
+	}
     </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
