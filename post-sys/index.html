@@ -17,32 +17,29 @@
     <script src="/scripts.js"></script>
     <script>
       var debug = [];
-      localStorage.setItem("auth", localStorage["auth"] || "");
+      localStorage.auth = localStorage.auth || "";
+      localStorage.handle = localStorage.handle || "a person";
+      localStorage.phrase = localStorage.phrase || "";
       importScript("polymer-loader", function() {
         importScript("hash", function() {
           postN = 0;
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
-          var color;
-          var handle = (function() {
-            colorInternal = 0;
-            color = (function() {
+          var color = (function(n) {
+            return function() {
               return ([
                 "#F44336", "#E91E63", "#9C27B0", "#673AB7",
                 "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
                 "#009688", "#4CAF50", "#FFEB3B", "#FFC107",
                 "#FF9800", "#FF9800", "#FF5722", "#795548"
-              ])[colorInternal];
-            })
-            var handleInternal = "a person";
-            return function(newhandle) {
-              if (handle !== (newhandle || handle))
-                colorInternal = Math.round(Math.random() * 16);
-              return (handleInternal = newhandle || handleInternal);
+              ])[n];
             };
-          })();
-          var phrase = (function(a) {
-          return b => a = b || a;
-          })("");
+          })(Math.round(Math.random() * 16));
+          var handle = function(s) {
+            return localStorage.handle = s || localStorage.handle;
+          };
+          var phrase = function(s) {
+            return localStorage.phrase = s || localStorage.phrase;
+          };
           document.querySelector(".new .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
               //addPost(handle(), this.value);
@@ -54,7 +51,6 @@
             }
           };
           document.querySelector(".new paper-button").onclick = function() {
-            //addPost(handle(), document.querySelector(".new .in").value);
             send(handle(), document.querySelector(".new .in").value);
             document.querySelector(".new .in").value = "";
           };
