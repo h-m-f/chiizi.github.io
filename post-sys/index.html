@@ -49,13 +49,11 @@
           var room = function(s) {
             if (s == "") {
               return room("lobby");
-            } else if (s) {
+            } else {
               setTimeout(function() {
                 window.location.reload();
               });
               return localStorage.room = "PS-" + s;
-            } else {
-              return localStorage.room;
             }
           };
           if (localStorage.room == undefined) {
@@ -176,7 +174,7 @@
             socket.onopen = function(e) {
               console.log("Connected");
               socket.send(JSON.stringify({
-                setID: room(),
+                setID: localStorage.room,
                 passwd: roomKey
               }));
             };
@@ -184,7 +182,7 @@
           // make a simple send function
           var send = function(name, msg, footer, room) {
             socket.send(JSON.stringify({
-              to: room(),
+              to: localStorage.room,
               name: name,
               msg: msg,
               footer: footer,
