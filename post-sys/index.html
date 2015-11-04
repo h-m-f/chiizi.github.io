@@ -20,17 +20,6 @@
       localStorage.setItem("auth", localStorage["auth"] || "");
       importScript("polymer-loader", function() {
         importScript("hash", function() {
-          var socket;
-          setTimeout(function() {
-            socket.onmessage = function(e) {
-              var msg = JSON.parse(e.data);
-              if (msg.name != undefined && msg.message != undefined) {
-		            addPost(msg.name, msg.message);
-		            
-			        }
-            };
-          }, 500);
-          
           postN = 0;
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
           var color;
@@ -134,44 +123,40 @@
             localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
             document.querySelector(".hidden-settings .auth .in").value = "";
           };
-        	var ws;
-						function wsOpen(){
-						ws = new WebSocket('ws://achex.ca:4010');
-						// add event handler for incomming message
-						ws.onmessage = function(evt){
-          			var st_received_message = evt.data;
-          			console.log('Received:'+ st_received_message);
-          			var received_message = JSON.parse(st_received_message);
-          			if (received_message.name != undefined && received_message.message != undefined) {
-          				addPost(received_message.name, received_message.message);
-          			}
-          	};
-          	// add event handler for diconnection 
-          	ws.onclose= function(evt){
-          		console.log('Diconnected');
-          	};
-          	// add event handler for error 
-          	ws.onerror= function(evt){
-          		console.log('Error');
-          	};
-          	// add event handler for new connection 
-          	ws.onopen= function(evt){
-          		console.log('Connected');
-          		ws.send('{"setID":"PS","passwd":"Password backwords"}');
-          	};
-          }
-          setTimeout(wsOpen,500);
+        	var socket;
+          setTimeout(function() {
+						socket = new WebSocket("ws://achex.ca:4010");
+						socket.onmessage = function(e) {
+              var msg = JSON.parse(e.data);
+              if (msg.name != undefined && msg.message != undefined) {
+                addPost(msg.name, msg.message);
+              }
+            };
+            socket.onclose = function(e) {
+              console.log("Disconnected");
+            };
+            socket.onerror = function(e) {
+              console.log("Error");
+            };
+            // add event handler for new connection 
+            socket.onopen = function(e) {
+              console.log("Connected");
+              socket.send(JSON.stringify({"setID": "PS", "passwd": "cheese"}));
+            };
+          } ,500);
           // make a simple send function
-          function send(_name, _message){
-          	console.log('Sent:'+ '{"to":"PS","name":"'+_name+'","message":"'+_message+'"}');
-          	ws.send('{"to":"PS","name":"'+_name+'","message":"'+_message+'"}');
+          var send = function(_name, _message) {
+            socket.send(JSON.stringify({
+              "to": "PS",
+              "name": _name,
+              "message": _message
+            }));
           }
         })
       });
       var hiddenSettings = function(b) {
         document.querySelector(".hidden-settings").classList[b ? "remove" : "add"]("hidden");
       };
-      	
     </script>
     <title>Posts</title>
     <meta charset="UTF-8" />
@@ -258,6 +243,9 @@
         border-radius: 2px;
         background: #F44336;
       }
+      .todo li {
+        list-style-type: armenian;
+      }
       .hidden {
         display: none;
       }
@@ -273,12 +261,15 @@
     <paper-card>
       <div class="content">
         TODO:
-        <ul>
+        <ul class="todo">
           <li>
             Add profile pics
           </li>
           <li>
             Add in-client handle validation
+          </li>
+          <li>
+            Add some sort of dynamic... ...admin... ...thing...
           </li>
         </ul>
       </div>
