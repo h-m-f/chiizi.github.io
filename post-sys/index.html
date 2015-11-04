@@ -16,12 +16,15 @@
     </template>
     <script src="/scripts.js"></script>
     <script>
-      var debug = [];
+      var debug;
       localStorage.auth = localStorage.auth || "";
       localStorage.handle = localStorage.handle || "a person";
       localStorage.signature = localStorage.signature || "";
       importScript("polymer-loader", function() {
         importScript("hash", function() {
+          debug = function(s) {
+            return eval(s);
+          }
           postN = 0;
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
           var color = (function(n) {
