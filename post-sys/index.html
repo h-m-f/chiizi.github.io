@@ -46,19 +46,7 @@
           var auth = function(s) {
             return localStorage.auth = s || localStorage.auth;
           };
-          var room = function(s) {
-            if (s == "") {
-              return room("lobby");
-            } else {
-              setTimeout(function() {
-                window.location.reload();
-              });
-              return localStorage.room = "PS-" + s;
-            }
-          };
-          if (localStorage.room == undefined) {
-            room("");
-          };
+          localStorage.room = "PS-lobby";
           
           var roomKey = function() {
             return "s\u0304";
@@ -129,7 +117,7 @@
             signature(document.querySelector(".settings .signature .in").value);
             document.querySelector(".settings .signature .in").value = "";
           };
-          document.querySelector(".settings .room .in").onkeypress = function(e) {
+          /* document.querySelector(".settings .room .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
               room(this.value);
               this.value = "";
@@ -141,7 +129,7 @@
           document.querySelector(".settings .room paper-button").onclick = function() {
             room(document.querySelector(".settings .room .in").value);
             document.querySelector(".settings .room .in").value = "";
-          };
+          }; */
           document.querySelector(".hidden-settings .auth .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
               localStorage.setItem("auth", this.value || localStorage["auth"]);
@@ -155,9 +143,9 @@
             localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
             document.querySelector(".hidden-settings .auth .in").value = "";
           };
-        	var socket;
+          var socket;
           setTimeout(function() {
-	          socket = new WebSocket("ws://achex.ca:4010");
+            socket = new WebSocket("ws://achex.ca:4010");
 						socket.onmessage = function(e) {
               var msg = JSON.parse(e.data);
               if (msg.type == "post-public") {
@@ -305,10 +293,13 @@
             Add profile pics
           </li>
           <li>
-            Add in-client handle validation
+            Add private rooms with passwords
           </li>
           <li>
-            Add private rooms with passwords
+            Add replies
+          </li>
+          <li>
+            Add in-client handle validation
           </li>
           <li>
             Add some sort of dynamic... ...admin... ...thing
