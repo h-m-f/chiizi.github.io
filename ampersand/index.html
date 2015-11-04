@@ -28,4 +28,19 @@
     }
     return tokens;
   };
+  ampersand.parse = function(a) {
+    var queue = [[]];
+    a.map(function(s) {
+      console.log(JSON.stringify(queue));
+      if (s == "(") {
+        queue.push([]);
+      } else if (s == ")") {
+        var value = queue.pop();
+        queue[queue.length - 1].push(value);
+      } else {
+        queue[queue.length - 1].push(s);
+      }
+    });
+    return queue[0];
+  };
 </script>
