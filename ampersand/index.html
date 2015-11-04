@@ -1,1 +1,31 @@
-
+<script>
+  var ampersand = {};
+  ampersand.lex = function(s) {
+    var i = 0;
+    var c = "\u0000";
+    var tokens = [];
+    var token = "";
+    var type = 0;
+    for (i = 0; i < s.length; i++) {
+      console.log(c = s[i]);
+      switch (c) {
+        case " ":
+          if (token) tokens.push(token);
+          token = "";
+          break;
+        case "(":
+        case ")":
+          if (token) tokens.push(token);
+          token = "";
+          tokens.push(c);
+          break;
+        default:
+          token += c;
+      }
+    }
+    if (token) {
+      tokens.push(token);
+    }
+    return tokens;
+  };
+</script>
