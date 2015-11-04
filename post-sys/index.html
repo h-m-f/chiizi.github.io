@@ -47,13 +47,18 @@
             if (s == "") {
               return room("lobby");
             } else if (s) {
-              setTimeout(window.location.reload);
+              setTimeout(function() {
+                window.location.reload();
+              });
               return localStorage.room = "PS-" + s;
             } else {
-              return localStorage.room
+              return localStorage.room;
             }
           };
-          room("");
+          if (localStorage.room == undefined) {
+            room("");
+          };
+          
           var roomKey = function() {
             return "s\u0304";
           };
