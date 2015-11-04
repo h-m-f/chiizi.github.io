@@ -10,7 +10,7 @@
         </div>
         <div class="content main"></div>
         <hr />
-        <div class="content phrase"></div>
+        <div class="content signature"></div>
         <div class="content footer"></div>
       </paper-card>
     </template>
@@ -19,7 +19,7 @@
       var debug = [];
       localStorage.auth = localStorage.auth || "";
       localStorage.handle = localStorage.handle || "a person";
-      localStorage.phrase = localStorage.phrase || "";
+      localStorage.signature = localStorage.signature || "";
       importScript("polymer-loader", function() {
         importScript("hash", function() {
           postN = 0;
@@ -37,8 +37,8 @@
           var handle = function(s) {
             return localStorage.handle = s || localStorage.handle;
           };
-          var phrase = function(s) {
-            return localStorage.phrase = s || localStorage.phrase;
+          var signature = function(s) {
+            return localStorage.signature = s || localStorage.signature;
           };
           document.querySelector(".new .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
@@ -73,7 +73,7 @@
             post.querySelector(".title").style.color = (hashes.indexOf(hash(localStorage.auth)) +1) ? "#000" : color();
             post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(localStorage.auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(localStorage.auth))] + "]" : "");
             post.querySelector(".content.main").innerHTML = content;
-            post.querySelector(".content.phrase").innerHTML = phrase();
+            post.querySelector(".content.signature").innerHTML = signature();
             post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
             if (content) {
               postN++;
@@ -93,18 +93,18 @@
             handle(document.querySelector(".settings .handle .in").value);
             document.querySelector(".settings .handle .in").value = "";
           };
-          document.querySelector(".settings .phrase .in").onkeypress = function(e) {
+          document.querySelector(".settings .signature .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
-              phrase(this.value);
+              signature(this.value);
               this.value = "";
               return false;
             } else {
               return true;
             }
           };
-          document.querySelector(".settings .phrase paper-button").onclick = function() {
-            phrase(document.querySelector(".settings .phrase .in").value);
-            document.querySelector(".settings .phrase .in").value = "";
+          document.querySelector(".settings .signature paper-button").onclick = function() {
+            signature(document.querySelector(".settings .signature .in").value);
+            document.querySelector(".settings .signature .in").value = "";
           };
           document.querySelector(".hidden-settings .auth .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
@@ -189,10 +189,10 @@
         margin: 10px;
         transition: color 0.2s ease-out;
       }
-      .content.phrase {
+      .content.signature {
         color: rgba(0, 0, 0, 0.75);
       }
-      .content.phrase:hover {
+      .content.signature:hover {
         color: rgba(0, 0, 0, 0.875);
       }
       .content.footer {
@@ -279,9 +279,9 @@
         <paper-input class="in" label="new handle"></paper-input>
         <paper-button raised class="em">change handle</paper-button>
       </div>
-      <div class="phrase content">
-        <paper-input class="in" label="new phrase"></paper-input>
-        <paper-button raised class="em">change phrase</paper-button>
+      <div class="signature content">
+        <paper-input class="in" label="new signature"></paper-input>
+        <paper-button raised class="em">change signature</paper-button>
       </div>
     </paper-card>
     <paper-card class="hidden hidden-settings">
