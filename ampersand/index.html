@@ -1,3 +1,6 @@
+<title>
+  Ampersand
+</title>
 <script>
   var ampersand = {};
   ampersand.lex = function(s) {
@@ -5,23 +8,41 @@
     var c = "\u0000";
     var tokens = [];
     var token = "";
-    var type = 0;
+    var strmode = 0;
     for (i = 0; i < s.length; i++) {
       console.log(c = s[i]);
-      switch (c) {
-        case " ":
-          if (token) tokens.push(token);
+      console.log(tokens, token);
+      if (strmode) {
+        console.log("strmode");
+        token += c;
+        if (c == "\"") {
+          strmode = false;
+          tokens.push(token);
           token = "";
-          break;
-        case "(":
-        case ")":
-          if (token) tokens.push(token);
-          token = "";
-          tokens.push(c);
-          break;
-        default:
-          token += c;
+        }
+      } else {
+        console.log("else");
+        switch (c) {
+          case "\"":
+            token += c;
+            strmode = true;
+            break;
+          case " ":
+            console.log("SPAAAAAAAAAAAACE");
+            if (token) tokens.push(token);
+            token = "";
+            break;
+          case "(":
+          case ")":
+            if (token) tokens.push(token);
+            token = "";
+            tokens.push(c);
+            break;
+          default:
+            token += c;
+        }
       }
+      console.log(tokens, token);
     }
     if (token) {
       tokens.push(token);
@@ -42,5 +63,9 @@
       }
     });
     return queue[0];
+  };
+  ampersand.eval = function(a, o) {
+    o = o || window;
+    
   };
 </script>
