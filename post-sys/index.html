@@ -148,6 +148,7 @@
             socket = new WebSocket("ws://achex.ca:4010");
 						socket.onmessage = function(e) {
               var msg = JSON.parse(e.data);
+              console.log(e.data);
               if (msg.type == "post-public") {
                 addPost(msg.name, msg.message, msg.footer, msg.time);
               }
