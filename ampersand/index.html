@@ -66,6 +66,15 @@
   };
   ampersand.eval = function(a, o) {
     o = o || window;
-    
+    for (var i = 0; i < a.length; i++) {
+      if (a.constructor == Array) {
+        a[i] = ampersand.eval(a[i], o);
+      } else {
+        with (o) {
+          a[i] = eval(a[i]);
+        }
+      }
+    }
+    return a[0].apply(null, a.slice(1));
   };
 </script>
