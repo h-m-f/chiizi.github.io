@@ -80,7 +80,6 @@ game.items = [
   {
     name: "sword",
     id: 0x0001,
-    kind: game.types.swordKind,
     sprites: {
       "32x32": "http://i.imgur.com/LC6VU9N.png"
     }
