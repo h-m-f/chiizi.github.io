@@ -456,13 +456,13 @@ game.render = function() {
      .rect.fill(16, 16, canvas.width - 32, canvas.height - 32);
     canvas.ctx.shadowBlur = 16;
     canvas.ctx.shadowColor = "#fff";
-    canvas.color("rgba(255, 255, 255, 0.9)");
+    canvas.color("rgba(255, 255, 255, 0.9)")
      .rect.fill(32, 32, canvas.width - 64, canvas.height - 64);
     canvas.ctx.shadowColor = "#000";
     
     canvas.color("rgba(0, 0, 0, " + (game.objsTouching(mouse, {x: 48, y: 48, width: (canvas.width - 96) / 2 - 8, height: 64}) ? "0.8" : "0.6") + ")")
      .rect.fill(48, 48, (canvas.width - 96) / 2 - 8, 64);
-     .color("rgba(0, 0, 0, " + (game.objsTouching(mouse, {x: canvas.width / 2 + 8, y: 48, width: (canvas.width - 96) / 2 - 8, height: 64}) ? "0.8" : "0.6") + ")");
+     .color("rgba(0, 0, 0, " + (game.objsTouching(mouse, {x: canvas.width / 2 + 8, y: 48, width: (canvas.width - 96) / 2 - 8, height: 64}) ? "0.8" : "0.6") + ")")
      .rect.fill(canvas.width / 2 + 8, 48, (canvas.width - 96) / 2 - 8, 64);
     
     canvas.ctx.shadowBlur = 0;
@@ -476,14 +476,14 @@ game.render = function() {
     canvas.ctx.fillText("x: " + game.player.x + ", y: " + game.player.y + " score: " + game.player.score, 10, 20);
     canvas.ctx.fillText("speed: " + game.player.calcSpeed, 10, 40);
     canvas.ctx.fillText("map: " + game.map.name, 10, 60);
-	}
+  }
 }
 
 game.main = function() {
-	game.update();
-	game.render();
+  game.update();
+  game.render();
 
-	requestAnimationFrame(game.main);
+  requestAnimationFrame(game.main);
 };
 
 game.player.x = canvas.width / 2 - 16;
