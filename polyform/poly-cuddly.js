@@ -452,7 +452,7 @@ game.render = function() {
   if (game.menu.open) {
     canvas.ctx.shadowBlur = 32;
     canvas.ctx.shadowColor = "#000";
-    ctx.color("rgba(0, 0, 0, 0.8)").
+    ctx.color("rgba(0, 0, 0, 0.8)")
      .rect.fill(16, 16, canvas.width - 32, canvas.height - 32);
     canvas.ctx.shadowBlur = 16;
     canvas.ctx.shadowColor = "#fff";
