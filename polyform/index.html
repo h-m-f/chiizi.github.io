@@ -10,11 +10,13 @@
   <body>
     <script src="/scripts.js"></script>
     <script>
-      var useCuddly = function(b) {
-        var script = document.createElement("script");
-        script.src = "poly" + (b ? "-cuddly" : "") + ".js";
-        document.body.appendChild(script);
-      };
+      importScript("cuddly-woof", function() {
+        window.useCuddly = function(b) {
+          var script = document.createElement("script");
+          script.src = "poly" + (b ? "-cuddly" : "") + ".js";
+          document.body.appendChild(script);
+        };
+      });
     </script>
   </body>
 </html>
