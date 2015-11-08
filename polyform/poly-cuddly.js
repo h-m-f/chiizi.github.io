@@ -461,7 +461,7 @@ game.render = function() {
     canvas.ctx.shadowColor = "#000";
     
     canvas.color("rgba(0, 0, 0, " + (game.objsTouching(mouse, {x: 48, y: 48, width: (canvas.width - 96) / 2 - 8, height: 64}) ? "0.8" : "0.6") + ")")
-     .rect.fill(48, 48, (canvas.width - 96) / 2 - 8, 64);
+     .rect.fill(48, 48, (canvas.width - 96) / 2 - 8, 64)
      .color("rgba(0, 0, 0, " + (game.objsTouching(mouse, {x: canvas.width / 2 + 8, y: 48, width: (canvas.width - 96) / 2 - 8, height: 64}) ? "0.8" : "0.6") + ")")
      .rect.fill(canvas.width / 2 + 8, 48, (canvas.width - 96) / 2 - 8, 64);
     
