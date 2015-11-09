@@ -186,7 +186,5 @@ var cornerstone = (function() {
     iteration++;
     requestAnimationFrame(main);
   })();
-  return function(fn) {
-    return fn();
-  };
+  return eval;
 })();
