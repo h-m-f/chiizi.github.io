@@ -1,4 +1,6 @@
 var cornerstone = (function() {
+  var STOP = false;
+  
   var Color = function(r, g, b) {
     this.getHex = function() {
       return "#" + (r & 0xFF).toString(16) + (g & 0xFF).toString(16) + (b & 0xFF).toString(16);
@@ -172,7 +174,8 @@ var cornerstone = (function() {
     render();
     
     iteration++;
-    requestAnimationFrame(main);
+    if (!STOP)
+      requestAnimationFrame(main);
   })();
   return (s => eval(s));
 })();
