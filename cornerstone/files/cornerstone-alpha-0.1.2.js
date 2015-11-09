@@ -17,13 +17,14 @@ var cornerstone = (function() {
   var ctx = canvas.getContext("2d");
   
   ctx.invertRect = function(x, y, width, height) {
-    var data = ctx.getImageData(x, y, width, height);
+    var _data = ctx.getImageData(x, y, width, height);
+    var data = _data.data;
     for (var i = 0; i < data.data.length; i += 4) {
       data.data[i] = 255 - data.data[i]; // R
       data.data[i + 1] = 255 - data.data[i + 1]; // G
       data.data[i + 2] = 255 - data.data[i + 2]; // B
     }
-    ctx.putImageData(data, x, y);
+    ctx.putImageData(_data, x, y);
   }
   
   var tcc = function(fn, color) {
