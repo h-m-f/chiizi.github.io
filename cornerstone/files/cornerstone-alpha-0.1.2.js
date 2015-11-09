@@ -1,4 +1,10 @@
 var cornerstone = (function() {
+  var constrain = function(obj, cont) {
+    var o = JSON.parse(JSON.stringify(obj));
+    o.x = Math.min(cont.x + cont.width, Math.max(cont.x, o.x));
+    o.y = Math.min(cont.y + cont.height, Math.max(cont.y, o.y));
+    return o;
+  }
   
   var Color = function(r, g, b) {
     this.getHex = function() {
