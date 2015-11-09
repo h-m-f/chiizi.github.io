@@ -1,11 +1,4 @@
 var cornerstone = (function() {
-  var constrain = function(obj, cont) {
-    var o = JSON.parse(JSON.stringify(obj));
-    o.x = Math.min(cont.x + cont.width, Math.max(cont.x, o.x));
-    o.y = Math.min(cont.y + cont.height, Math.max(cont.y, o.y));
-    return o;
-  }
-  
   var Color = function(r, g, b) {
     this.getHex = function() {
       return "#" + (r & 0xFF).toString(16) + (g & 0xFF).toString(16) + (b & 0xFF).toString(16);
@@ -31,7 +24,7 @@ var cornerstone = (function() {
     ctx.putImageData(data, x, y);
   }
   
-  var tempColorChange = function(fn, color) {
+  var tcc = function(fn, color) {
     var old = ctx.fillStyle;
     ctx.fillStyle = color;
     fn();
@@ -117,14 +110,12 @@ var cornerstone = (function() {
   var renderStack = [player];
   
   var sessionRender = function() {
-    if (Math.round(iteration / 60) % 2) {
+    if (Math.round(iteration / 30) % 2) {
       ctx.font = "Bold 30px Courier New";
       ctx.textAlign = "center";
       ctx.fillText("SESSION IN PROGRESS", canvas.width / 2, canvas.height / 2)
     }
-    for (var ii = 0; ii < renderStack.length; ii++) {
-      renderStack[ii].render();
-    }
+    renderStack.forEach(o => o.render);
   };
   
   var render = function() {
@@ -139,9 +130,7 @@ var cornerstone = (function() {
     ctx.font = "Bold 20px Courier New";
     ctx.textAlign = "left";
     
-    tempColorChange(function() {
-      ctx.fillText("cornerstone ver. alpha-0.1.2", 16, 16);
-    }, "rgba(128, 128, 128, 128)");
+    tcc(() => ctx.fillText("cornerstone ver. alpha-0.1.2", 16, 16), "rgba(128, 128, 128, 128)");
   };
   
   var keysDown = [];
@@ -169,7 +158,6 @@ var cornerstone = (function() {
       if (keyIsDown(40) ||  keyIsDown(83)) { // down, s
         player.y += player.speed / 60;
       }
-      player = constrain(canvas, player);
     } else {
       if (keyIsDown(13)) {
         sessionOpen = true;
