@@ -48,7 +48,7 @@ var cornerstone = (function() {
     height: 32,
     speed: 64,
     render: function() {
-      ctx.invertRect(x, y, 32, 32);
+      ctx.invertRect(this.x, this.y, 32, 32);
     }
   };
   
