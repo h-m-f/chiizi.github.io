@@ -1,6 +1,5 @@
+var STOP = false;
 var cornerstone = (function() {
-  var STOP = false;
-  
   var Color = function(r, g, b) {
     this.getHex = function() {
       return "#" + (r & 0xFF).toString(16) + (g & 0xFF).toString(16) + (b & 0xFF).toString(16);
@@ -49,9 +48,7 @@ var cornerstone = (function() {
     width: 32,
     height: 32,
     speed: 64,
-    render: function() {
-      ctx.invertRect(this.x, this.y, 32, 32);
-    }
+    render: (() => tcc("#0F8", (() => ctx.fillRect(this.x, this.y, 32, 32))))
   };
   
   var titleRender = function() {
