@@ -48,7 +48,7 @@ var cornerstone = (function() {
     width: 32,
     height: 32,
     speed: 64,
-    render: (() => tcc("#0F8", (() => ctx.fillRect(this.x, this.y, 32, 32))))
+    render: (() => tcc((() => ctx.fillRect(this.x, this.y, 32, 32))), "#0F8")
   };
   
   var titleRender = function() {
