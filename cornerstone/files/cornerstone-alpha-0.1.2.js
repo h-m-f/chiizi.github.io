@@ -115,7 +115,7 @@ var cornerstone = (function() {
       ctx.textAlign = "center";
       ctx.fillText("SESSION IN PROGRESS", canvas.width / 2, canvas.height / 2)
     }
-    renderStack.forEach(o => o.render);
+    renderStack.forEach(o => o.render());
   };
   
   var render = function() {
