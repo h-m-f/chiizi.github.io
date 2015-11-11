@@ -1,1 +1,18 @@
-<!DOCTYPE html>
+<title>FoodService</title>
+<style>
+  * {
+    font-family: monospace;
+  }
+</style>
+<div class="output"></div>
+<input type="text" />
+<script>
+  var game = function() {
+    
+  };
+  document.querySelector("input").onsubmit = function() {
+    var output = document.createElement("div");
+    output.innerHTML = game(this.value);
+    return false;
+  };
+</script>
