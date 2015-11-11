@@ -7,9 +7,10 @@
 <div class="output"></div>
 <input type="text" />
 <script>
-  var game = function() {
-    
-  };
+  var game = (function() {
+    var customersServed = 0;
+    return (s => eval(s));
+  })();
   document.querySelector("input").onsubmit = function() {
     var output = document.createElement("div");
     output.innerHTML = game(this.value);
