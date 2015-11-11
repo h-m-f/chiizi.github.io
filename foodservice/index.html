@@ -5,13 +5,13 @@
   }
 </style>
 <div class="output"></div>
-<textarea></textarea>
+<input type="text" />
 <script>
   var game = (function() {
     var customersServed = 0;
     return (s => eval(s));
   })();
-  document.querySelector("textarea").onkeydown = function(e) {
+  document.querySelector("input").onkeydown = function(e) {
     if (e.keyCode == 13) {
       var output = document.createElement("div");
       output.innerHTML = game(this.value);
