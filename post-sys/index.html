@@ -119,10 +119,10 @@
             localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
             document.querySelector(".hidden-settings .auth .in").value = "";
           };
-        	var socket;
+          var socket;
           setTimeout(function() {
-						socket = new WebSocket("ws://achex.ca:4010");
-						socket.onmessage = function(e) {
+            socket = new WebSocket("ws://achex.ca:4010");
+            socket.onmessage = function(e) {
               var msg = JSON.parse(e.data);
               if (msg.name != undefined && msg.message != undefined) {
                 addPost(msg.name, msg.message);
