@@ -140,7 +140,7 @@
             // add event handler for new connection 
             socket.onopen = function(e) {
               console.log("Connected");
-              socket.send(JSON.stringify({setID: "PS", passwd: "cheese"}));
+              socket.send(JSON.stringify({setID: "PS-" + document.location.hash.substr(1) || "lobby", passwd: "cheese"}));
             };
           } ,500);
           // make a simple send function
