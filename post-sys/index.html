@@ -40,6 +40,9 @@
           var signature = function(s) {
             return localStorage.signature = s || localStorage.signature;
           };
+          var auth = function(s) {
+            return localStorage.auth = s || localStorage.auth;
+          };
           document.querySelector(".new .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
               send(handle(), this.value, signature(), color(), auth(), new Date(Date.now()));
