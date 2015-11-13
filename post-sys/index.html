@@ -125,6 +125,7 @@
           setTimeout(function() {
             socket = new WebSocket("ws://achex.ca:4010");
             socket.onmessage = function(e) {
+              console.log(e.data);
               var msg = JSON.parse(e.data);
               if (!!msg.message) {
                 addPost(msg.name, msg.message);
