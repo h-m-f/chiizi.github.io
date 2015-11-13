@@ -72,8 +72,8 @@
             })();
             post.querySelector(".avatar").innerHTML = posterName[0].toUpperCase();
             post.querySelector(".avatar").style.backgroundColor =
-            post.querySelector(".title").style.color = (hashes.indexOf(hash(localStorage.auth)) +1) ? "#000" : color;
-            post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(localStorage.auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(localStorage.auth))] + "]" : "");
+            post.querySelector(".title").style.color = (hashes.indexOf(hash(auth)) +1) ? "#000" : color;
+            post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(auth))] + "]" : "");
             post.querySelector(".content.main").innerHTML = content;
             post.querySelector(".content.signature").innerHTML = sig;
             post.querySelector(".content.footer").innerHTML = "@ " + time;
