@@ -8,6 +8,15 @@
 <input type="text" />
 <script>
   var game = (function() {
+    var score = 5;
+    var served = [];
+    var customers = [];
+    var customer = function() {
+      return ((a, b) => (a.push(b), {
+        name: "Bob",
+        order: "Ice Cream"
+      }));
+    };
     var customersServed = 0;
     return (s => eval(s));
   })();
