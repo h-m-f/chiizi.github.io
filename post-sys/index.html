@@ -16,15 +16,12 @@
     </template>
     <script src="/scripts.js"></script>
     <script>
-      var debug;
+      var debug = [];
       localStorage.auth = localStorage.auth || "";
       localStorage.handle = localStorage.handle || "a person";
       localStorage.signature = localStorage.signature || "";
       importScript("polymer-loader", function() {
         importScript("hash", function() {
-          debug = function(s) {
-            return eval(s);
-          }
           postN = 0;
           importPolymer("1.1.4", "paper-card", "paper-button", "paper-input");
           var color = (function(n) {
@@ -43,14 +40,6 @@
           var signature = function(s) {
             return localStorage.signature = s || localStorage.signature;
           };
-          var auth = function(s) {
-            return localStorage.auth = s || localStorage.auth;
-          };
-          localStorage.room = "PS-lobby";
-          
-          var roomKey = function() {
-            return "s\u0304";
-          };
           document.querySelector(".new .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
               //addPost(handle(), this.value);
@@ -65,7 +54,7 @@
             send(handle(), document.querySelector(".new .in").value);
             document.querySelector(".new .in").value = "";
           };
-          var addPost = function(posterName, content, footer, time) {
+          var addPost = function(posterName, content) {
             var hashes = [3553, 92668751, 1575917304];
             var post = document.importNode(document.querySelector(".post-proto").content, true);
             post.querySelector(".post").id = "post-" + postN;
@@ -84,8 +73,8 @@
             post.querySelector(".title").style.color = (hashes.indexOf(hash(localStorage.auth)) +1) ? "#000" : color();
             post.querySelector(".title").innerHTML = posterName + ((hashes.indexOf(hash(localStorage.auth)) +1) ? " [" + (["Operator", "Administrator", "Grand Lucifer"])[hashes.indexOf(hash(localStorage.auth))] + "]" : "");
             post.querySelector(".content.main").innerHTML = content;
-            post.querySelector(".content.signature").innerHTML = footer;
-            post.querySelector(".content.footer").innerHTML = "@ " + time;
+            post.querySelector(".content.signature").innerHTML = signature();
+            post.querySelector(".content.footer").innerHTML = "@ " + new Date(Date.now()).toString();
             if (content) {
               postN++;
               document.body.insertBefore(post, document.body.childNodes[2]);
@@ -117,19 +106,6 @@
             signature(document.querySelector(".settings .signature .in").value);
             document.querySelector(".settings .signature .in").value = "";
           };
-          /* document.querySelector(".settings .room .in").onkeypress = function(e) {
-            if (e.keyCode == 13) {
-              room(this.value);
-              this.value = "";
-              return false;
-            } else {
-              return true;
-            }
-          };
-          document.querySelector(".settings .room paper-button").onclick = function() {
-            room(document.querySelector(".settings .room .in").value);
-            document.querySelector(".settings .room .in").value = "";
-          }; */
           document.querySelector(".hidden-settings .auth .in").onkeypress = function(e) {
             if (e.keyCode == 13) {
               localStorage.setItem("auth", this.value || localStorage["auth"]);
@@ -143,14 +119,13 @@
             localStorage.setItem("auth", document.querySelector(".hidden-settings .auth .in").value || localStorage["auth"]);
             document.querySelector(".hidden-settings .auth .in").value = "";
           };
-          var socket;
+        	var socket;
           setTimeout(function() {
-            socket = new WebSocket("ws://achex.ca:4010");
+						socket = new WebSocket("ws://achex.ca:4010");
 						socket.onmessage = function(e) {
               var msg = JSON.parse(e.data);
-              console.log(e.data);
-              if (msg.type == "post-public") {
-                addPost(msg.name, msg.message, msg.footer, msg.time);
+              if (msg.name != undefined && msg.message != undefined) {
+                addPost(msg.name, msg.message);
               }
             };
             socket.onclose = function(e) {
@@ -162,22 +137,15 @@
             // add event handler for new connection 
             socket.onopen = function(e) {
               console.log("Connected");
-              socket.send(JSON.stringify({
-                setID: localStorage.room,
-                passwd: 'test'
-              }));
+              socket.send(JSON.stringify({"setID": "PS", "passwd": "cheese"}));
             };
           } ,500);
           // make a simple send function
-          var send = function(name, msg, footer, room) {
+          var send = function(_name, _message) {
             socket.send(JSON.stringify({
-              to: localStorage.room,
-              name: name,
-              msg: msg,
-              footer: footer,
-              time: new Date(Date.now()).toString(),
-              auth: auth(),
-              type: "post-public"
+              "to": "PS",
+              "name": _name,
+              "message": _message
             }));
           }
         })
@@ -294,16 +262,10 @@
             Add profile pics
           </li>
           <li>
-            Add private rooms with passwords
-          </li>
-          <li>
-            Add replies
-          </li>
-          <li>
             Add in-client handle validation
           </li>
           <li>
-            Add some sort of dynamic... ...admin... ...thing
+            Add some sort of dynamic... ...admin... ...thing...
           </li>
         </ul>
       </div>
@@ -320,10 +282,6 @@
       <div class="signature content">
         <paper-input class="in" label="new signature"></paper-input>
         <paper-button raised class="em">change signature</paper-button>
-      </div>
-      <div class="room content">
-        <paper-input class="in" label="room"></paper-input>
-        <paper-button raised class="em">change room</paper-button>
       </div>
     </paper-card>
     <paper-card class="hidden hidden-settings">
