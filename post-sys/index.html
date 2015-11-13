@@ -128,7 +128,7 @@
               console.log(e.data);
               var msg = JSON.parse(e.data);
               if (!!msg.message) {
-                addPost(msg.name, msg.message);
+                addPost(msg.name, msg.message, msg.signature, msg.color, msg.auth, msg.time);
               }
             };
             socket.onclose = function(e) {
