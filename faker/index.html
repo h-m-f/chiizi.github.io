@@ -1,30 +1,41 @@
+<title>Faker</title>
 <style>
   #controls {
-    
+    background: rgba(128, 128, 128, 0.5);
+    border: #888;
   }
 </style>
 <script>
   window.onload = function() {
-    document.getElementById('controls').addEventListener('mousedown', function(e) {
-      window.addEventListener('mousemove', function(e) {
-        var div = document.getElementById('dxy');
-        div.style.position = 'absolute';
-        div.style.top = e.clientY + 'px';
-        div.style.left = e.clientX + 'px';
+    document.getElementById("controls").addEventListener("mousedown", function(e) {
+      window.addEventListener("mousemove", function(e) {
+        var div = document.getElementById("dxy");
+        div.style.position = "absolute";
+        div.style.top = e.clientY + "px";
+        div.style.left = e.clientX + "px";
       }, true);
     }, false);
-    window.addEventListener('mouseup', function() {
-      window.removeEventListener('mousemove', function(e) {
-        var div = document.getElementById('dxy');
-        div.style.position = 'absolute';
-        div.style.top = e.clientY + 'px';
-        div.style.left = e.clientX + 'px';
+    window.addEventListener("mouseup", function() {
+      window.removeEventListener("mousemove", function(e) {
+        var div = document.getElementById("dxy");
+        div.style.position = "absolute";
+        div.style.top = e.clientY + "px";
+        div.style.left = e.clientX + "px";
       }, true);
     }, false);
+  };
+  document.querySelector("form").onsubmit = function() { //document.querySelector()
+    document.querySelector("iframe").src = document.querySelector("#controls .url-selector").value || document.querySelector("iframe").src;
+    document.title = document.querySelector("#controls .title-selector").value || document.title;
+    return false;
   };
   //.​;
 </script>
 <iframe src="welcome.html"></iframe>
 <div id="controls">
-  <input type="text" class="url-sector" />
+  <form>
+    <input type="text" placeholder="URL" class="url-selector" />
+    <input type="text" placeholder="page title" class="title-selector" />
+  </form>
+  
 </div>
