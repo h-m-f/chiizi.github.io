@@ -1,0 +1,13 @@
+{
+  "name": "Sample App",
+  "shortname": "Sample",
+  "symbol": "Sa",
+  "intName": "ocm.dev:sample-app",
+  "permissions": {
+    "fs": "rw",
+    "settings": 0,
+    "noti": "persistent",
+    "bgrun": "on-open"
+  },
+  "loadscript": "init.js"
+}
