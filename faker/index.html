@@ -7,22 +7,17 @@
 </style>
 <script>
   window.onload = function() {
-    document.getElementById("controls").addEventListener("mousedown", function(e) {
-      window.addEventListener("mousemove", function(e) {
+    document.getElementById("controls").mousedown = function(e) {
+      window.mousemove = function(e) {
         var div = document.getElementById("controls");
         div.style.position = "absolute";
         div.style.top = e.clientY + "px";
         div.style.left = e.clientX + "px";
-      }, true);
-    }, false);
-    window.addEventListener("mouseup", function() {
-      window.removeEventListener("mousemove", function(e) {
-        var div = document.getElementById("controls");
-        div.style.position = "absolute";
-        div.style.top = e.clientY + "px";
-        div.style.left = e.clientX + "px";
-      }, true);
-    }, false);
+      };
+    };
+    window.mouseup = function() {
+      window.mousemove = null;
+    };
     document.querySelector("form").onsubmit = function() {
       document.querySelector("iframe").src = document.querySelector("#controls .url-selector").value || document.querySelector("iframe").src;
       document.title = document.querySelector("#controls .title-selector").value || document.title;
