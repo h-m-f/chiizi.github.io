@@ -3,7 +3,7 @@ var F = function() {
     
   };
   this.appLoad = function(s) {
-    
+    importJSON(s).then( /* */ );
   }
   return this;
 };
