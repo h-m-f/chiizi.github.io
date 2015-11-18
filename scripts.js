@@ -1,6 +1,6 @@
 var importScript = function(soa, f, sza, bzf) {
   sza = sza != undefined ? sza : ".js";
-  if (this.gotten.indexOf(soa) == -1) {
+  if (importScript.gotten.indexOf(soa) == -1) {
     var script = document.createElement("script");
     if (soa[0] == "/") {
       script.src = "https://" + (/^\/[0-9A-Za-z-.]+/).exec(soa)[0].split("").slice(1).join("").split(".").reverse().join(".") + (/^[0-9A-Za-z-./]+?(?=[0-9A-Za-z-.]+\/$)/).exec(soa.split("").reverse().join(""))[0].split("").reverse().join("") + sza;
@@ -15,6 +15,8 @@ var importScript = function(soa, f, sza, bzf) {
     return bzf ? script : document.head.appendChild(script), script;
   }
 };
+
+importScript.gotten = [];
 
 var importJSON = function(url) {
   return new Promise(function(resolve, reject) {
@@ -32,5 +34,3 @@ var importJSON = function(url) {
     xhr.send();
   });
 };
-
-importScript.gotten = [];
