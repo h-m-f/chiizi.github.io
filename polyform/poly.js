@@ -424,30 +424,6 @@ game.binds = [
     }
   },
   {
-    code: 87,
-    action: function(modifier) {
-      game.player.y -= game.player.calcSpeed * modifier;
-    }
-  },
-  {
-    code: 83,
-    action: function(modifier) {
-      game.player.y += game.player.calcSpeed * modifier;
-    }
-  },
-  {
-    code: 65,
-    action: function(modifier) {
-      game.player.x -= game.player.calcSpeed * modifier;
-    }
-  },
-  {
-    code: 68,
-    action: function(modifier) {
-      game.player.x += game.player.calcSpeed * modifier;
-    }
-  },
-  {
     code: 32,
     action: function() {
       game.player.ready = false;
