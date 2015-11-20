@@ -8,7 +8,7 @@ canvas {
   transform: translate(-50%, -50%);
   cursor: none;
 }
-.toggle-overlay {
+.toggle-sidebar {
   width: 8vh;
   height: 8vh;
   position: absolute;
@@ -21,7 +21,7 @@ canvas {
   transition: opacity 0.2s ease-in;
   opacity: 0.5;
 }
-.toggle-overlay:hover {
+.toggle-sidebar:hover {
   opacity: 1;
 }
 .sidebar {
