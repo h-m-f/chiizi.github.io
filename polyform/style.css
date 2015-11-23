@@ -32,6 +32,7 @@ canvas {
   top: 0;
   left: 0;
   transition: left 0.3s ease-in;
+  background: rgba(192, 192, 192, 0.5);
 }
 .sidebar.gone {
   left: -30vw;
