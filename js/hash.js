@@ -1,10 +1,5 @@
-var hash = function(s) {
-  var hash = 0, i, chr, len;
-  if (s.length == 0) return hash;
-  for (i = 0, len = s.length; i < len; i++) {
-    chr   = s.charCodeAt(i);
-    hash  = ((hash << 5) - hash) + chr;
-    hash |= 0; // Convert to 32bit integer
-  }
-  return hash;
-};
+var hash;
+importScript("/com.rawgit.cdn/Caligatio/jsSHA/03f898d654cc83f952a16e2372a89a3ebadae435/src/sha", () =>
+  hash = (s, f, o) =>
+    (o = o || new jsSHA("SHA-512", "TEXT")).update(s)
+    , setTimeout(() => f(o.getHash("HEX")), 0));
