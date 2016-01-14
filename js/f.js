@@ -3,7 +3,7 @@ var F = function() {
     
   };
   this.appLoad = function(s) {
-    importJSON(s).then( /* */ );
+    importJSON(s + "/cfg.json").then( /* */ );
   }
   return this;
 };
