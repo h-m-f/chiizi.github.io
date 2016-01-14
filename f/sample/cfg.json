@@ -1,13 +1,11 @@
 {
-  "name": "Sample App",
-  "shortname": "Sample",
-  "symbol": "Sa",
-  "intName": "ocm.dev:sample-app",
+  "name": "Core Functionality",
+  "shortname": "Core",
+  "symbol": "Cf",
+  "intName": "f.hans:core",
+  "needs": [],
   "permissions": {
-    "fs": "rw",
-    "settings": 0,
-    "noti": "persistent",
-    "bgrun": "on-open"
+    "permissionsDB": "rw"
   },
-  "loadscript": "init.js"
+  "loadscript": "/init.js"
 }
