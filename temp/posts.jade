@@ -1,0 +1,10 @@
+#page
+  #top
+    h1 hans.
+  each post in posts
+    .post
+      h2= post.title
+      .content= post.text
+      .after
+        span.notes= post.after
+        span.author= post.by
