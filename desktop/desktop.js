@@ -3,7 +3,7 @@ String.prototype.reverse = function() {
 };
 
 document.documentElement.addEventListener("click", () =>
-  document.documentElement.webkitRequestFullscreen());
+  (document.documentElement.webkitRequestFullscreen || document.documentElement.mozRequestFullScreen)());
 
 var windows = [];
 var newWindow = (options) => {
