@@ -61,7 +61,7 @@ var newWindow = (options) => {
     document.querySelector(".window-layer").appendChild(elem);
     (elem.querySelector(".close") ||  {addEventListener: () => null}).addEventListener("click", () =>
       (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
-    elem.addEventListener("click", () =>
+    elem.addEventListener("mousedown", () =>
       document.querySelector(".window-layer").appendChild(elem))
     
     return elem;
