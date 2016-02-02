@@ -62,8 +62,11 @@ var newWindow = (options) => {
   }
 };
 
-var login = newWindow({
+var test = newWindow({
   id: "test",
   title: "test"
 });
-document.body.appendChild(login);
+var osx = newWindow({
+  id: "osx",
+  title: "osx test"
+});
