@@ -41,6 +41,12 @@ body {
 .wintop .icon:hover {
   background-color: #EEE;
 }
+.icon.resize {
+  background-image: url("max.svg");
+}
+.icon.resize.max {
+  background-image: url("demax.svg");
+}
 
 .bottom-bg {
   position: absolute;
