@@ -51,7 +51,7 @@ var newWindow = (options) => {
       elem.classList.add("hidden"), false)
     
     var trayListing = document.createElement("div");
-    trayListing.innerHTML = `<div class="icon close"></div> ${title} (${id})`;
+    trayListing.innerHTML = `<div class="icon close"></div> <div class="name">${title} (${id})</div>`;
     trayListing.classList.add("tray-listing");
     document.querySelector(".side-tray").appendChild(trayListing);
     trayListing.querySelector(".close").addEventListener("click", () =>
