@@ -47,8 +47,17 @@ var newWindow = (options) => {
   <div class="left">${topButtons.left.map(s => `<div class="icon ${s}"></div>`)}</div><div class="right">${topButtons.right.map(s => `<div class="icon ${s}"></div>`)}</div>
 </div>`;
     elem.querySelector(".wintop").addEventListener("mousedown", md, false);
-    elem.querySelector(".hide").addEventListener("mousedown", () =>
+    elem.querySelector(".hide").addEventListener("click", () =>
       elem.classList.add("hidden"), false)
+    
+    var trayListing = document.createElement("div");
+    trayListing.innerHTML = `<div class="icon close"></div> ${title} (${id})`;
+    trayListing.classList.add("tray-listing");
+    document.querySelector(".side-tray").appendChild(trayListing);
+    trayListing.querySelector(".close").addEventListener("click", () =>
+      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
+    document.querySelector(".window-layer").appendChild(elem);
+    
     return elem;
   }
 };
