@@ -56,11 +56,11 @@ var newWindow = (options) => {
     document.querySelector(".side-tray").appendChild(trayListing);
     trayListing.querySelector(".close").addEventListener("click", close);
     trayListing.addEventListener("click", () =>
-      (elem.classList.remove("hidden"), document.querySelector(".window-layer").appendChild(elem)));
+      (elem.classList.remove("hidden"), document.querySelector(".window-layer").removeChild(elem), document.querySelector(".window-layer").appendChild(elem)));
     document.querySelector(".window-layer").appendChild(elem);
     (elem.querySelector(".close") ||  {addEventListener: () => null}).addEventListener("click", close);
     elem.addEventListener("mousedown", () =>
-      document.querySelector(".window-layer").appendChild(elem))
+      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".window-layer").appendChild(elem)));
     
     var close = () =>
       (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing));
