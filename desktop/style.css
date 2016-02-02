@@ -22,6 +22,23 @@ body {
   background-color: #CCC;
   width: 100%;
   height: 32px;
+  position: relative;
+}
+.wintop .left {
+  position: absolute;
+  left: 0;
+}
+.wintop .right {
+  position: absolute;
+  right: 0;
+}
+.wintop .icon {
+  width: 32px;
+  height: 32px;
+  background-color: #DDD;
+}
+.wintop .icon:hover {
+  background-color: #EEE;
 }
 
 .bottom-bg {
