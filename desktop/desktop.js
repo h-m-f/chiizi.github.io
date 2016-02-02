@@ -1,3 +1,6 @@
+var $ = q => document.querySelector(q);
+var $$ = q => document.querySelectorAll(q);
+
 String.prototype.reverse = function() {
   return this.split("").reverse().join("");
 };
@@ -43,7 +46,8 @@ var newWindow = (options) => {
     var elem = document.createElement("div");
     elem.classList.add("win");
     elem.classList.add("initial-size");
-    elem.innerHTML = `<div class="wintop" title="${title}" id="${id}">
+    elem.id = id;
+    elem.innerHTML = `<div class="wintop" title="${title}">
   <div class="left">${topButtons.left.map(s => `<div class="icon ${s}"></div>`).join("")}</div><div class="right">${topButtons.right.map(s => `<div class="icon ${s}"></div>`).join("")}</div>
 </div>`;
     elem.querySelector(".wintop").addEventListener("mousedown", md, false);
@@ -51,19 +55,20 @@ var newWindow = (options) => {
       elem.classList.add("hidden"), false)
     
     var trayListing = document.createElement("div");
+    trayListing.id = `tray-${id}`;
     trayListing.innerHTML = `<div class="icon close"></div> <span class="name">${title} (${id})</span>`;
     trayListing.classList.add("tray-listing");
-    document.querySelector(".side-tray").appendChild(trayListing);
+    $(".side-tray").appendChild(trayListing);
     trayListing.querySelector(".close").addEventListener("click", close);
     trayListing.addEventListener("click", () =>
-      (elem.classList.remove("hidden"), document.querySelector(".window-layer").removeChild(elem), document.querySelector(".window-layer").appendChild(elem)));
-    document.querySelector(".window-layer").appendChild(elem);
+      (elem.classList.remove("hidden"), $(".window-layer").removeChild(elem), $(".window-layer").appendChild(elem)));
+    $(".window-layer").appendChild(elem);
     (elem.querySelector(".close") ||  {addEventListener: () => null}).addEventListener("click", close);
     elem.addEventListener("mousedown", () =>
-      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".window-layer").appendChild(elem)));
+      ($(".window-layer").removeChild($(`#${id}`)), $(".window-layer").appendChild(elem)));
     
     var close = () =>
-      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing));
+      ($(".window-layer").removeChild(elem), $(".side-tray").removeChild(`#tray-${id}`));
     
     return elem;
   }
