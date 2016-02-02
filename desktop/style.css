@@ -51,8 +51,16 @@ body {
 .side-tray:hover {
   transform: translateX(0);
 }
-
-.side-tray .icon {
+.tray-listing {
+  position: relative;
+}
+.tray-listing .name {
+  position: absolute;
+  top: 50%;
+  left: 26px;
+  transform: translateY(-50%);
+}
+.tray-listing .icon {
   display: inline-block;
   background-color: #DDD;
   margin: 3px;
