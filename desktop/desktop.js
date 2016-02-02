@@ -26,11 +26,28 @@ var newWindow = (options) => {
     var offX;
     var offY;
     
+    var topButtons = {
+      left: (mode == "elm"
+        ? ["hide"]
+        : mode == "osx"
+          ? ["exit", "resize", "hide"]
+          : mode == "win"
+            ? []
+            : ["hide"]),
+      right: (mode == "elm"
+        ? ["max"]
+        : mode == "osx"
+          ? []
+          : mode == "win"
+            ? ["exit", "resize", "hide"]
+            : ["max"])
+    }
+    
     var elem = document.createElement("div");
     elem.classList.add("win");
     elem.classList.add("initial-size");
     elem.innerHTML = `<div class="wintop" title="${title}" id="${id}">
-  <div class="icon reload"></div><div class="icon minimize"></div><div class="icon resize"></div><div class="icon close"></div>
+  <div class="left">${topButtons.left.map(s => `<div class="icon ${s}"></div>`)}</div><div class="right">${topButtons.right.map(s => `<div class="icon ${s}"></div>`)}</div>
 </div>`;
     elem.querySelector(".wintop").addEventListener("mousedown", md, false);
     return elem;
