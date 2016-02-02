@@ -18,6 +18,9 @@ body {
   width: 200px;
   height: 200px;
 }
+.win.hidden {
+  display: none;
+}
 .wintop {
   background-color: #CCC;
   width: 100%;
