@@ -31,13 +31,13 @@ var newWindow = (options) => {
       left: (mode == "elm"
         ? ["hide"]
         : mode == "osx"
-          ? ["exit", "resize", "hide"]
+          ? ["close", "max", "hide"]
           : []),
       right: (mode == "elm"
         ? ["max"]
         : mode == "osx"
           ? []
-          : ["exit", "resize", "hide"])
+          : ["hide", "max", "close"])
     }
     
     var elem = document.createElement("div");
