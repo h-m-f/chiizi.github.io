@@ -52,21 +52,9 @@ body {
   transform: translateX(0);
 }
 
-.tray-listing {
-  height: 34px;
-  position: relative;
-}
-.tray-listing .name {
-  position: absolute;
-  top: 50%;
-  right: 7px;
-  transform: translateX(-50%);
-}
-
 .side-tray .icon {
   display: inline-block;
   background-color: #DDD;
-  margin: 7px;
 }
 
 .win {
