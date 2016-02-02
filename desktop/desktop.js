@@ -26,7 +26,7 @@ var newWindow = (options) => {
     var offX;
     var offY;
     
-    mode = mode || "elm";
+    var mode = options.mode || "elm";
     var topButtons = {
       left: (mode == "elm"
         ? ["hide"]
