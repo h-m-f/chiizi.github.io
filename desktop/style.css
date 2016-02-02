@@ -54,6 +54,7 @@ body {
 
 .side-tray .tray-listing {
   line-height: 34px;
+  vertical-align: middle;
 }
 
 .side-tray .icon {
