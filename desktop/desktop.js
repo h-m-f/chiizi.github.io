@@ -37,6 +37,6 @@ var newWindow = (options) => {
 
 var login = newWindow({
   id: "test",
-  "title": "test"
+  title: "test"
 });
 document.body.appendChild(login);
