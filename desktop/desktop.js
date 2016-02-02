@@ -67,6 +67,7 @@ var test = newWindow({
   title: "test"
 });
 var osx = newWindow({
+  mode: "osx",
   id: "osx",
   title: "osx test"
 });
