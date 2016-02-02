@@ -53,6 +53,7 @@ body {
 }
 
 .side-tray .icon {
+  display: inline-block;
   background-color: #DDD;
 }
 
