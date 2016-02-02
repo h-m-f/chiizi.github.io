@@ -26,21 +26,18 @@ var newWindow = (options) => {
     var offX;
     var offY;
     
+    mode = mode || "elm";
     var topButtons = {
       left: (mode == "elm"
         ? ["hide"]
         : mode == "osx"
           ? ["exit", "resize", "hide"]
-          : mode == "win"
-            ? []
-            : ["hide"]),
+          : []),
       right: (mode == "elm"
         ? ["max"]
         : mode == "osx"
           ? []
-          : mode == "win"
-            ? ["exit", "resize", "hide"]
-            : ["max"])
+          : ["exit", "resize", "hide"])
     }
     
     var elem = document.createElement("div");
