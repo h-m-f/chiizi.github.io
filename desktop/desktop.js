@@ -56,6 +56,8 @@ var newWindow = (options) => {
     document.querySelector(".side-tray").appendChild(trayListing);
     trayListing.querySelector(".close").addEventListener("click", () =>
       (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
+    trayListing.addEventListener("click", () =>
+      elem.classList.remove("hidden"))
     document.querySelector(".window-layer").appendChild(elem);
     
     return elem;
