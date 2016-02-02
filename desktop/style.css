@@ -55,14 +55,14 @@ body {
   float: right;
 }
 .home {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4Ij4KICA8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIxMiIgc3Ryb2tlPSIjRkZGIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMCkiIC8+Cjwvc3ZnPg==");
+  background-image: url("circle.svg");
 }
 .bottom .icon.home:hover {
   background-color: rgba(255, 0, 16, 0.3);
 }
 .menu {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4Ij4KICA8Y2lyY2xlIGN4PSIxNSIgY3k9IjI0IiByPSIyIiBzdHJva2U9InJnYmEoMjU1LCAyNTUsIDI1NSwgMCkiIHN0cm9rZS13aWR0aD0iMCIgZmlsbD0iI0ZGRiIgLz4KICA8Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIyIiBzdHJva2U9InJnYmEoMjU1LCAyNTUsIDI1NSwgMCkiIHN0cm9rZS13aWR0aD0iMCIgZmlsbD0iI0ZGRiIgLz4KICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjI0IiByPSIyIiBzdHJva2U9InJnYmEoMjU1LCAyNTUsIDI1NSwgMCkiIHN0cm9rZS13aWR0aD0iMCIgZmlsbD0iI0ZGRiIgLz4KPC9zdmc+")
+  background-image: url("ellipsis.svg");
 }
 .back {
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4Ij4KICA8bGluZSB4MT0iMTUiIHkxPSIyNCIgeDI9IjMzIiB5Mj0iMjQiIHN0cm9rZT0iI0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIiAvPgo8L3N2Zz4=");
+  background-image: url("dash.svg");
 }
