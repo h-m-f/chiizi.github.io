@@ -59,7 +59,7 @@ var newWindow = (options) => {
     trayListing.addEventListener("click", () =>
       elem.classList.remove("hidden"));
     document.querySelector(".window-layer").appendChild(elem);
-    (elem.querySelector(".close").addEventListener || () => null)("click", () =>
+    (elem.querySelector(".close").addEventListener || (() => null))("click", () =>
       (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
     
     return elem;
