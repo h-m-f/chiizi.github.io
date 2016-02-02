@@ -12,9 +12,9 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200px;
+  width: 250px;
   height: 100vh;
-  transform: translateX(-98%);
+  transform: translateX(-96%);
   transition: transform 0.2s ease-in;
   background-color: rgba(255, 0, 16, 0.6);
 }
