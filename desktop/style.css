@@ -52,6 +52,10 @@ body {
   transform: translateX(0);
 }
 
+.side-tray .tray-listing {
+  line-height: 34px;
+}
+
 .side-tray .icon {
   display: inline-block;
   background-color: #DDD;
