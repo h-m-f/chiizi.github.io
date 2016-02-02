@@ -47,6 +47,8 @@ var newWindow = (options) => {
   <div class="left">${topButtons.left.map(s => `<div class="icon ${s}"></div>`)}</div><div class="right">${topButtons.right.map(s => `<div class="icon ${s}"></div>`)}</div>
 </div>`;
     elem.querySelector(".wintop").addEventListener("mousedown", md, false);
+    elem.querySelector(".hide").addEventListener("mousedown", () =>
+      elem.classList.add("hidden"), false)
     return elem;
   }
 };
