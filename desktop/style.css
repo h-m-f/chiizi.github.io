@@ -41,11 +41,20 @@ body {
 .wintop .icon:hover {
   background-color: #EEE;
 }
-.icon.resize {
+.icon.reload {
+  background-image: url("home.svg");
+}
+.icon.hide {
+  background-image: url("hide.svg");
+}
+.icon.max {
   background-image: url("max.svg");
 }
-.icon.resize.max {
+.icon.demax {
   background-image: url("demax.svg");
+}
+.icon.close {
+  background-image: url("close.svg");
 }
 
 .bottom-bg {
