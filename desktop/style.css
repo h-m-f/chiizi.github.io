@@ -85,7 +85,7 @@ body {
   resize: both;
   overflow: auto;
   position: absolute;
-  border: 1px #FFF;
+  border: 1px #CCC;
 }
 .win.initial-size {
   width: 200px;
