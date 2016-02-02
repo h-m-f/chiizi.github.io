@@ -53,8 +53,8 @@ body {
 }
 
 .tray-listing {
-  line-height: 34px;
-  vertical-align: middle;
+  height: 34px;
+  position: relative;
 }
 .tray-listing .name {
   position: absolute;
