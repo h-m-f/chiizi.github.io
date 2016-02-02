@@ -54,15 +54,16 @@ var newWindow = (options) => {
     trayListing.innerHTML = `<div class="icon close"></div> <span class="name">${title} (${id})</span>`;
     trayListing.classList.add("tray-listing");
     document.querySelector(".side-tray").appendChild(trayListing);
-    trayListing.querySelector(".close").addEventListener("click", () =>
-      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
+    trayListing.querySelector(".close").addEventListener("click", close);
     trayListing.addEventListener("click", () =>
       (elem.classList.remove("hidden"), document.querySelector(".window-layer").appendChild(elem)));
     document.querySelector(".window-layer").appendChild(elem);
-    (elem.querySelector(".close") ||  {addEventListener: () => null}).addEventListener("click", () =>
-      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
+    (elem.querySelector(".close") ||  {addEventListener: () => null}).addEventListener("click", close);
     elem.addEventListener("mousedown", () =>
       document.querySelector(".window-layer").appendChild(elem))
+    
+    var close = () =>
+      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing));
     
     return elem;
   }
