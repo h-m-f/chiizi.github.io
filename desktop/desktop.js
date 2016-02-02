@@ -57,8 +57,10 @@ var newWindow = (options) => {
     trayListing.querySelector(".close").addEventListener("click", () =>
       (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
     trayListing.addEventListener("click", () =>
-      elem.classList.remove("hidden"))
+      elem.classList.remove("hidden"));
     document.querySelector(".window-layer").appendChild(elem);
+    (elem.querySelector(".close").addEventListener || () => null)("click", () =>
+      (document.querySelector(".window-layer").removeChild(elem), document.querySelector(".side-tray").removeChild(trayListing)));
     
     return elem;
   }
