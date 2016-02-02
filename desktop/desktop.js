@@ -68,7 +68,7 @@ var newWindow = (options) => {
       ($(".window-layer").removeChild($(`#${id}`)), $(".window-layer").appendChild(elem)));
     
     var close = () =>
-      ($(".window-layer").removeChild(elem), $(".side-tray").removeChild(`#tray-${id}`));
+      ($(".window-layer").removeChild($(`#${id}`)), $(".side-tray").removeChild(`#tray-${id}`));
     
     return elem;
   }
