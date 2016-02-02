@@ -44,7 +44,7 @@ var newWindow = (options) => {
     elem.classList.add("win");
     elem.classList.add("initial-size");
     elem.innerHTML = `<div class="wintop" title="${title}" id="${id}">
-  <div class="left">${topButtons.left.map(s => `<div class="icon ${s}"></div>`)}</div><div class="right">${topButtons.right.map(s => `<div class="icon ${s}"></div>`)}</div>
+  <div class="left">${topButtons.left.map(s => `<div class="icon ${s}"></div>`).join("")}</div><div class="right">${topButtons.right.map(s => `<div class="icon ${s}"></div>`)}</div>
 </div>`;
     elem.querySelector(".wintop").addEventListener("mousedown", md, false);
     elem.querySelector(".hide").addEventListener("click", () =>
