@@ -52,9 +52,15 @@ body {
   transform: translateX(0);
 }
 
-.side-tray .tray-listing {
+.tray-listing {
   line-height: 34px;
   vertical-align: middle;
+}
+.tray-listing .name {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  transform: translateX(-50%);
 }
 
 .side-tray .icon {
