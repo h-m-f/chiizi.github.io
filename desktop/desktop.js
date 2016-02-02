@@ -18,8 +18,10 @@ var newWindow = (options) => {
       window.removeEventListener("mousemove", mm, true);
     };
     var mm = e => {
-      elem.style.left = (e.clientX - offX) + "px";
-      elem.style.top = (e.clientY - offY) + "px";
+      if (e.clientX >= 0 && e.clientY >= 0 && e.clientX < innerWidth && e.clientY < innerHeight - 49) {
+        elem.style.left = (e.clientX - offX) + "px";
+        elem.style.top = (e.clientY - offY) + "px";
+      }
     };
     var offX;
     var offY;
