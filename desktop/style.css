@@ -1,7 +1,17 @@
+@font-face {
+  font-family: "bau";
+  src: url("//storage.googleapis.com/urbit-extra/bau.woff");
+  font-weight: 400;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
   border: none;
+  font-family: "bau";
+  font-weight: 400;
+  font-style: normal;
+  
 }
 body {
   background-image: url("http://www.planwallpaper.com/static/images/kartandtinki1_photo-wallpapers_02.jpg");
